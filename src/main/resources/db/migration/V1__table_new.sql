@@ -1,0 +1,8 @@
+CREATE TABLE news (
+  id BIGINT(20) NOT NULL AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  header VARCHAR(255) NOT NULL,
+  body VARCHAR(255) NOT NULL,
+  date_of_record DATE NOT NULL,
+  PRIMARY KEY (id)
+);
