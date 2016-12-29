@@ -43,9 +43,8 @@ public class NewsController {
     }
 
     @RequestMapping(path = "/addimage", method = RequestMethod.POST)
-    public String addImage(//@RequestParam("name") String name,
+    public String addImage(@RequestParam("name") String name,
                            @RequestParam ("file") MultipartFile file){
-        String name = "1.png";
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -53,7 +52,7 @@ public class NewsController {
                         new BufferedOutputStream(new FileOutputStream(new File(name + "-uploaded")));
                 stream.write(bytes);
                 stream.close();
-                return "";
+                return name + "-uploaded";
             } catch (Exception e) {
                 return "Вам не удалось загрузить " + name + " => " + e.getMessage();
             }
