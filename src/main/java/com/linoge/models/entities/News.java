@@ -1,6 +1,7 @@
 package com.linoge.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.linoge.models.converters.TagConverter;
 import com.linoge.models.dto.NewsDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,13 +48,13 @@ public class News {
             inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id")
     )
     @JsonManagedReference
-    private Set<Tag> tags;
+    private List<Tag> tags;
 
     public NewsDTO toDTO(){
         return NewsDTO.builder()
                 .id(this.id)
                 .title(this.title)
                 .header(this.header)
-                .tags(new ArrayList<>(tags)).build();
+                .tags(TagConverter.convertTagsCollectionToDTO(tags)).build();
     }
 }

@@ -1,5 +1,6 @@
 package com.linoge.servicies;
 
+import com.linoge.models.dto.NewsDTO;
 import com.linoge.models.entities.News;
 
 import java.util.List;
@@ -9,7 +10,11 @@ import java.util.List;
  */
 public interface NewsService {
 
-    public List<News> getNews();
+    List<News> getNews();
 
-    public Long createNews(String text, String title, List<Long> tagsId);
+    Long createNews(String text, String title, List<Long> tagsId);
+
+    List<News> getNewsByTag(Long tagId);
+
+    News getNewsById(Long newsId);
 }

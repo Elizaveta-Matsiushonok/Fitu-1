@@ -11,12 +11,11 @@ import java.util.List;
  */
 public class NewsConverter {
 
-    public static List<NewsDTO> convertNewsToDTO(List<News> news){
+    public static List<NewsDTO> convertNewsCollectionToDTO(List<News> news){
         List<NewsDTO> newsDTO = new ArrayList<>();
         for (News tempNews : news ){
             newsDTO.add(tempNews.toDTO());
         }
-
         return newsDTO;
     }
 }

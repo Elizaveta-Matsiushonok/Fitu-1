@@ -24,15 +24,25 @@ public class NewsController {
     @Autowired
     NewsService newsService;
 
-    @RequestMapping(path = "/getnewsdto", method = RequestMethod.GET)
+    @RequestMapping(path = "/getnews", method = RequestMethod.GET)
     public List<NewsDTO> getAllNews(){
-        return NewsConverter.convertNewsToDTO(newsService.getNews());
+        return NewsConverter.convertNewsCollectionToDTO(newsService.getNews());
     }
 
-    @RequestMapping(path = "/getnews", method = RequestMethod.GET)
-    public List<News> getNews(){
-        return newsService.getNews();
+    @RequestMapping(path = "/getnewsbytag", method = RequestMethod.GET)
+    public List<NewsDTO> getNewsByTag(@RequestParam("tagid") Long tagId){
+        return NewsConverter.convertNewsCollectionToDTO(newsService.getNewsByTag(tagId));
     }
+
+    @RequestMapping(path = "/getnewsbyid", method = RequestMethod.GET)
+    public News getNewsById(@RequestParam("newsid") Long newsId){
+        return newsService.getNewsById(newsId);
+    }
+
+//    @RequestMapping(path = "/getnews", method = RequestMethod.GET)
+//    public List<News> getNews(){
+//        return newsService.getNews();
+//    }
 
     @RequestMapping(path = "/addnews", method = RequestMethod.POST)
     public Long addNews(@RequestParam("title") String title,
