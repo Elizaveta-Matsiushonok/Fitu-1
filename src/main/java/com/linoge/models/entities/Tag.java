@@ -27,10 +27,4 @@ public class Tag {
     @ManyToMany(mappedBy = "tags")
     @JsonBackReference
     private List<News> news;
-
-    public TagDTO toDTO(){
-        return TagDTO.builder()
-                .id(id)
-                .title(title).build();
-    }
 }

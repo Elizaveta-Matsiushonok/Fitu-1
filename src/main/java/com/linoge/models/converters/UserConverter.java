@@ -15,7 +15,6 @@ public class UserConverter {
              .username(user.getUsername())
              .authorities(user.getAuthorities().stream()
                      .map(Enum::toString)
-                     .collect(Collectors.toList()))
-             .build();
+                     .collect(Collectors.toList())).build();
     }
 }

@@ -8,8 +8,8 @@ import javax.persistence.Entity;
  * Created by Tim on 08.01.2017.
  */
 public enum Role implements GrantedAuthority {
-    USER,
-    ADMIN;
+    ROLE_USER,
+    ROLE_ADMIN;
 
     @Override
     public String getAuthority() {

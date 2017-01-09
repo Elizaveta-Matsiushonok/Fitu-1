@@ -10,23 +10,24 @@ import java.util.*;
  * Created by Timo on 09.01.2017.
  */
 @Converter
-public class RoleConverter implements AttributeConverter<Set<Role>, String> {
+public class RoleConverter implements AttributeConverter<List<Role>, String> {
 
-    private static final String SEPARATOR = "|";
+    private static final String SEPARATOR = " ";
 
 
     @Override
-    public String convertToDatabaseColumn(Set<Role> roles) {
+    public String convertToDatabaseColumn(List<Role> roles) {
         StringBuilder sb = new StringBuilder();
         roles.forEach(role -> sb.append(role.getAuthority() + SEPARATOR));
         return sb.toString();
     }
 
     @Override
-    public Set<Role> convertToEntityAttribute(String rolesWithSeparator) {
-        Set<Role> roles = new HashSet<>();
-        List<String> roleText = new ArrayList<>(Arrays.asList(rolesWithSeparator.split(SEPARATOR)));
-        roleText.forEach(role -> roles.add(Role.valueOf(role)));
+    public List<Role> convertToEntityAttribute(String rolesWithSeparator) {
+        List<Role> roles = new ArrayList<>();
+        List<String> listRoles = new ArrayList<>(
+                Arrays.asList(rolesWithSeparator.trim().split(SEPARATOR)));
+        listRoles.forEach(role -> roles.add(Role.valueOf(role)));
         return roles;
     }
 }

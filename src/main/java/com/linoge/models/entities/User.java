@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -48,6 +49,6 @@ public class User implements UserDetails {
 
     @Column(name = "authorities", nullable = false)
     @Convert(converter = RoleConverter.class)
-    private Set<Role> authorities;
+    private List<Role> authorities;
 
 }

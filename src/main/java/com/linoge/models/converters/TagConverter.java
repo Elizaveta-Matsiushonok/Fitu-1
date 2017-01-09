@@ -14,10 +14,10 @@ public class TagConverter {
 
     public static List<TagDTO> convertTagsCollectionToDTO(List<Tag> tags){
         List<TagDTO> tagsDTO = new ArrayList<>(tags.size());
-        for (Tag tag : tags ){
-            tagsDTO.add(tag.toDTO());
-        }
+        tags.forEach(tag -> TagDTO.builder()
+                .id(tag.getId())
+                .title(tag.getTitle())
+                .build());
         return tagsDTO;
     }
-
 }

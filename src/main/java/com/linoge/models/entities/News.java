@@ -49,12 +49,4 @@ public class News {
     )
     @JsonManagedReference
     private List<Tag> tags;
-
-    public NewsDTO toDTO(){
-        return NewsDTO.builder()
-                .id(this.id)
-                .title(this.title)
-                .header(this.header)
-                .tags(TagConverter.convertTagsCollectionToDTO(tags)).build();
-    }
 }

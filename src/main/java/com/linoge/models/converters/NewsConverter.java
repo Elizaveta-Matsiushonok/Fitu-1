@@ -13,9 +13,14 @@ public class NewsConverter {
 
     public static List<NewsDTO> convertNewsCollectionToDTO(List<News> news){
         List<NewsDTO> newsDTO = new ArrayList<>();
-        for (News tempNews : news ){
-            newsDTO.add(tempNews.toDTO());
-        }
+        news.forEach(element -> newsDTO.add(NewsDTO.builder()
+                .id(element.getId())
+                .title(element.getTitle())
+                .header(element.getHeader())
+                .tags(TagConverter
+                        .convertTagsCollectionToDTO(element.getTags()))
+                .build())
+        );
         return newsDTO;
     }
 }
