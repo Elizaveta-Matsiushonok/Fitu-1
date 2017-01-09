@@ -1,6 +1,8 @@
-package com.linoge.models.entities;
+package com.linoge.models.enums;
 
 import org.springframework.security.core.GrantedAuthority;
+
+import javax.persistence.Entity;
 
 /**
  * Created by Tim on 08.01.2017.
