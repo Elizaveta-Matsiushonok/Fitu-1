@@ -2,6 +2,8 @@ package com.linoge.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.linoge.models.dto.TagDTO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,8 @@ import java.util.List;
  * Created by Timo on 28.12.2016.
  */
 @Entity
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Table(name = "tag")

@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Timo on 28.12.2016.
@@ -34,21 +35,16 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public Long createNews(String text, String title, List<Long> tagsId){
-        String header = text.substring(0, text.indexOf(BODY_TAG));
-        String body = text.substring(text.indexOf(BODY_TAG) + BODY_TAG.length());
-        List<Tag> tags = new ArrayList<>();
-        for( Long id : tagsId){
-            tags.add(tagService.findTagById(id));
-        }
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        News news = News.builder()
-                .header(header)
-                .body(body)
+        return newsRepository.saveAndFlush(News.builder()
+                .header(text.substring(0, text.indexOf(BODY_TAG)))
+                .body(text.substring(text.indexOf(BODY_TAG) + BODY_TAG.length()))
                 .title(title)
-                .tags(tags)
-                .date(sdf.format(new Date())).build();
-        return newsRepository.saveAndFlush(news).getId();
+                .tags(tagsId.stream()
+                        .map(tag -> tagService.findTagById(tag))
+                        .collect(Collectors.toList()))
+                .date(new SimpleDateFormat("yyyy-MM-dd")
+                        .format(new Date())).build())
+                .getId();
     }
 
     @Override
@@ -59,6 +55,11 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public News getNewsById(Long newsId) {
         return newsRepository.findOne(newsId);
+    }
+
+    @Override
+    public void deleteNewsById(Long id) {
+        newsRepository.delete(id);
     }
 
 

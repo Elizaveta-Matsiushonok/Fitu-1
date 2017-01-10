@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
  * Created by Timo on 28.12.2016.
  */
 public class NewsConverter {
-
     public static List<NewsDTO> convertNewsCollectionToDTO(List<News> news){
         return news.stream()
                 .map(element -> NewsDTO.builder()

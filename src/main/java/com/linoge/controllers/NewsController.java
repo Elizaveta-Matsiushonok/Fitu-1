@@ -38,17 +38,25 @@ public class NewsController {
         return newsService.getNewsById(newsId);
     }
 
-//    @RequestMapping(path = "/getnews", method = RequestMethod.GET)
-//    public List<News> getNews(){
-//        return newsService.getNews();
-//    }
-
     @RequestMapping(path = "/addnews", method = RequestMethod.POST)
     public Long addNews(@RequestParam("title") String title,
                         @RequestParam("tags") List<Long> tagsId,
                         @RequestParam("text") String text){
-
        return newsService.createNews(text, title, tagsId);
+    }
+
+    @RequestMapping(path = "/deletenews", method = RequestMethod.POST)
+    public void deleteNews(@RequestParam("id") Long id){
+        newsService.deleteNewsById(id);
+    }
+
+    @RequestMapping(path = "/rewritenews", method = RequestMethod.POST)
+    public Long rewriteNews(@RequestParam("id") Long id,
+                            @RequestParam("title") String title,
+                            @RequestParam("tags") List<Long> tagsId,
+                            @RequestParam("text") String text){
+        newsService.deleteNewsById(id);
+        return newsService.createNews(text, title, tagsId);
     }
 
     @RequestMapping(path = "/addimage", method = RequestMethod.POST)

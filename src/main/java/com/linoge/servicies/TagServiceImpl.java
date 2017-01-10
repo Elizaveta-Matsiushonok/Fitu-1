@@ -25,4 +25,15 @@ public class TagServiceImpl implements TagService{
     public List<Tag> getAll() {
         return tagRepository.findAll();
     }
+
+    @Override
+    public void addTag(String title) {
+        tagRepository.saveAndFlush(Tag.builder()
+                .title(title).build());
+    }
+
+    @Override
+    public void deleteTagById(Long id) {
+        tagRepository.delete(id);
+    }
 }

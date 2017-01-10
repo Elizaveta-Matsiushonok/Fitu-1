@@ -17,4 +17,6 @@ public interface NewsService {
     List<News> getNewsByTag(Long tagId);
 
     News getNewsById(Long newsId);
+
+    void deleteNewsById(Long id);
 }

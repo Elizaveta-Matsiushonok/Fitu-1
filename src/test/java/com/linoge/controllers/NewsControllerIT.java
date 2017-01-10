@@ -32,7 +32,8 @@ public class NewsControllerIT {
 
     @Test
     public void getAllNews() throws Exception {
-        ResponseEntity<List<NewsDTO>> responseEntity = restTemplate.exchange("http://localhost:8081/getnews", HttpMethod.GET, null,
+        ResponseEntity<List<NewsDTO>> responseEntity = restTemplate
+                .exchange("http://localhost:8081/getnews", HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<NewsDTO>>() {
         });
         List<NewsDTO> actualList = responseEntity.getBody();
@@ -44,5 +45,4 @@ public class NewsControllerIT {
                 .collect(collectingAndThen(toList(), ImmutableList::copyOf));
         assertThat(actualId, containsInAnyOrder(1L, 2L, 3L));
     }
-
 }

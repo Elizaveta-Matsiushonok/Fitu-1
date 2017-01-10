@@ -19,4 +19,14 @@ public class TagController {
 
     @RequestMapping(path = "/gettags", method = RequestMethod.GET)
     public List<Tag> getTags(){ return tagService.getAll(); }
+
+    @RequestMapping(path = "/addtag", method = RequestMethod.POST)
+    public void addTag(@RequestParam("title") String title){
+        tagService.addTag(title);
+    }
+
+    @RequestMapping(path = "/deletetag", method = RequestMethod.POST)
+    public void deleteTag(@RequestParam("id") Long id){
+        tagService.deleteTagById(id);
+    }
 }
