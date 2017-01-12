@@ -26,9 +26,10 @@ public class SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-        String dataJson = new ObjectMapper().writeValueAsString(UserConverter.convertUserToDTO((User) userDetailsService
-                .loadUserByUsername(authentication.getName())));
+        String dataJson = new ObjectMapper()
+                .writeValueAsString(UserConverter.convertUserToDTO((User) userDetailsService
+                        .loadUserByUsername(authentication.getName())));
         response.getWriter().write(dataJson);
-        System.out.println("AFTER Succces");
+        System.out.println("AFTER Succes");
     }
 }

@@ -16,13 +16,14 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @Table(name = "department")
-public class Department {
+public class Speciality {
 
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @OneToOne(mappedBy = "speciality")
+    @Column(name = "name")
     private String name;
 }

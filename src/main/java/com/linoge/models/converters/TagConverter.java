@@ -3,15 +3,16 @@ package com.linoge.models.converters;
 import com.linoge.models.dto.TagDTO;
 import com.linoge.models.entities.Tag;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * Created by Timo on 30.12.2016.
  */
-public class TagConverter {
+public final class TagConverter {
+
+    private TagConverter() {
+    }
 
     public static List<TagDTO> convertTagsCollectionToDTO(List<Tag> tags) {
         return tags.stream()
