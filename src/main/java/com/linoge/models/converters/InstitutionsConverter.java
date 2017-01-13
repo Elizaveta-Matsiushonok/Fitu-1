@@ -7,25 +7,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by Timo on 12.01.2017.
+ * Created by Timo on 13.01.2017.
  */
 @Converter
-public final class PhoneConverter implements AttributeConverter<List<String>, String> {
+public final class InstitutionsConverter implements AttributeConverter<List<String>, String> {
 
     private final String SEPARATOR = "|";
 
-    public PhoneConverter() {
-    }
-
     @Override
-    public String convertToDatabaseColumn(List<String> phones) {
-        return phones.stream()
+    public String convertToDatabaseColumn(List<String> institutions) {
+        return institutions.stream()
                 .collect(Collectors.joining(SEPARATOR));
     }
 
     @Override
-    public List<String> convertToEntityAttribute(String phonesWithSeparator) {
-        return Arrays.stream(phonesWithSeparator.split(SEPARATOR))
+    public List<String> convertToEntityAttribute(String institutionsWithSeparator) {
+        return Arrays.stream(institutionsWithSeparator.split(SEPARATOR))
                 .collect(Collectors.toList());
     }
 }

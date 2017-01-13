@@ -19,16 +19,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private SuccessHandler successHandler;
+    private SuccessAuthenticationHandler successAuthenticationHandler;
 
     @Autowired
-    private FailureHandler failureHandler;
+    private FailureAuthenticationHandler failureAuthenticationHandler;
 
     @Autowired
     private UserDetailsService userDetailsService;
 
     @Bean
-    public PasswordEncoder bcryptPasswordEncoder(){
+    public PasswordEncoder bcryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -41,8 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
-                .successHandler(successHandler)
-                .failureHandler(failureHandler)
+                .successHandler(successAuthenticationHandler)
+                .failureHandler(failureAuthenticationHandler)
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .and()
@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(bcryptPasswordEncoder());

@@ -14,21 +14,21 @@ import java.util.stream.Collectors;
 @Converter
 public final class RoleConverter implements AttributeConverter<List<Role>, String> {
 
-    private final String SEPARATOR = " ";
+    private final String SEPARATOR = "|";
 
-    private RoleConverter() {
+    public RoleConverter() {
     }
 
     @Override
     public String convertToDatabaseColumn(List<Role> roles) {
         return roles.stream()
-                .map(role -> role.getAuthority() + SEPARATOR)
-                .collect(Collectors.joining());
+                .map(Role::getAuthority)
+                .collect(Collectors.joining(SEPARATOR));
     }
 
     @Override
     public List<Role> convertToEntityAttribute(String rolesWithSeparator) {
-        return Arrays.stream(rolesWithSeparator.trim().split(SEPARATOR))
+        return Arrays.stream(rolesWithSeparator.split(SEPARATOR))
                 .map(Role::valueOf)
                 .collect(Collectors.toList());
     }

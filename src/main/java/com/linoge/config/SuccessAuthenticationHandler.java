@@ -18,7 +18,7 @@ import java.io.IOException;
  * Created by Tim on 08.01.2017.
  */
 @Service
-public class SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+public class SuccessAuthenticationHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     @Autowired
     UserDetailsService userDetailsService;
@@ -30,6 +30,6 @@ public class SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
                 .writeValueAsString(UserConverter.convertUserToDTO((User) userDetailsService
                         .loadUserByUsername(authentication.getName())));
         response.getWriter().write(dataJson);
-        System.out.println("AFTER Succes");
+        System.out.println("AFTER Success");
     }
 }

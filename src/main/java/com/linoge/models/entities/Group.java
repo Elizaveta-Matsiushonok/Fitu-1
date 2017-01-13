@@ -6,29 +6,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
- * Created by Timo on 11.01.2017.
+ * Created by Timo on 13.01.2017.
  */
 @Entity
 @NoArgsConstructor
 @Data
 @Builder
 @AllArgsConstructor
-@Table(name = "speciality")
-public class Speciality {
+@Table(name = "`group`")
+public class Group {
 
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "speciality_id", nullable = false)
-    private String specialityId;
+    @Column(name = "group_id", nullable = false)
+    private String groupId;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @OneToOne(mappedBy = "speciality")
-    private Student student;
+    @OneToMany(mappedBy = "group")
+    private Set<Student> students;
 }

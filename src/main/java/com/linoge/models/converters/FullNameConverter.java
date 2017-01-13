@@ -10,16 +10,17 @@ import java.util.stream.Collectors;
 
 /**
  * Created by Timo on 11.01.2017.
+ * Convert FullName object in entity to database view with Separator and back.
  */
 @Converter
 public final class FullNameConverter implements AttributeConverter<FullName, String> {
 
-    private final String SEPARATOR = " ";
+    private final String SEPARATOR = "|";
     private final int SURNAME_INDEX = 0;
     private final int FIRSTNAME_INDEX = 1;
     private final int PATRONYMIC_INDEX = 2;
 
-    private FullNameConverter() {
+    public FullNameConverter() {
     }
 
     @Override

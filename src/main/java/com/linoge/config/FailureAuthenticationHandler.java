@@ -14,7 +14,7 @@ import java.io.IOException;
  * Created by Tim on 08.01.2017.
  */
 @Service
-public class FailureHandler extends SimpleUrlAuthenticationFailureHandler {
+public class FailureAuthenticationHandler extends SimpleUrlAuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) throws IOException, ServletException {

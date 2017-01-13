@@ -1,6 +1,8 @@
 package com.linoge.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.linoge.models.converters.FullNameConverter;
+import com.linoge.models.converters.JobsConverter;
 import com.linoge.models.converters.PhoneConverter;
 import com.linoge.models.shared.FullName;
 import lombok.AllArgsConstructor;
@@ -31,7 +33,7 @@ public class Parent {
     @Convert(converter = FullNameConverter.class)
     private FullName fullName;
 
-    @Column(name = "registration", nullable = false)
+    @OneToMany(mappedBy = "parent")
     private List<Address> registration;
 
     @Column(name = "contacts", nullable = false)
@@ -45,5 +47,10 @@ public class Parent {
     private String dateOfBirth;
 
     @Column(name = "jobs")
+    @Convert(converter = JobsConverter.class)
     private List<String> jobs;
+
+    @ManyToMany(mappedBy = "parents")
+    @JsonBackReference
+    private List<Student> children;
 }

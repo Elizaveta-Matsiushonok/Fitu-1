@@ -1,7 +1,10 @@
 package com.linoge.models.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.linoge.models.converters.FullNameConverter;
+import com.linoge.models.converters.InstitutionsConverter;
+import com.linoge.models.converters.JobsConverter;
 import com.linoge.models.converters.PhoneConverter;
 import com.linoge.models.shared.FullName;
 import lombok.AllArgsConstructor;
@@ -34,9 +37,11 @@ public class Student {
     @Convert(converter = FullNameConverter.class)
     private FullName fullName;
 
+    @OneToMany(mappedBy = "studentRegistration")
     @Column(name = "registration", nullable = false)
     private List<Address> registration;
 
+    @OneToMany(mappedBy = "studentAddress")
     @Column(name = "address", nullable = false)
     private List<Address> address;
 
@@ -56,10 +61,10 @@ public class Student {
     @Column(name = "marital_status", nullable = false)
     private String maritalStatus;
 
-    @Column(name = "date_of_birth")
+    @Column(name = "date_of_birth", nullable = false)
     private String dateOfBirth;
 
-    @Column(name = "birthplace")
+    @Column(name = "birthplace", nullable = false)
     private String birthplace;
 
     @Column(name = "drive_id", nullable = false)
@@ -72,25 +77,33 @@ public class Student {
     private String militaryDuty;
 
     @Column(name = "institutions", nullable = false)
-    private List<String> insitutions;
+    @Convert(converter = InstitutionsConverter.class)
+    private List<String> institutions;
 
     @Column(name = "jobs")
+    @Convert(converter = JobsConverter.class)
     private List<String> jobs;
 
-    @Column(name = "parents", nullable = false)
+    @ManyToMany
+    @JsonManagedReference
+    @JoinTable(
+            name = "students_parents",
+            joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "parent_id", referencedColumnName = "id")
+    )
     private List<Parent> parents;
 
     @Column(name = "need_in_hostel", nullable = false)
     private Boolean needInHostel;
-
 
     @OneToOne
     @JoinColumn(name = "speciality_id")
     private Speciality speciality;
 
 
-    //номе ргруппы
-
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 
     //журнал с отметками
 }
