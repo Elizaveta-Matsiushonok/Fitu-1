@@ -16,7 +16,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewsDTO {
+public class ArticleDTO {
 
     public Long id;
 

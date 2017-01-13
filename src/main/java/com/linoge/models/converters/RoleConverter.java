@@ -6,6 +6,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -28,7 +29,7 @@ public final class RoleConverter implements AttributeConverter<List<Role>, Strin
 
     @Override
     public List<Role> convertToEntityAttribute(String rolesWithSeparator) {
-        return Arrays.stream(rolesWithSeparator.split(SEPARATOR))
+        return Arrays.stream(rolesWithSeparator.split(Pattern.quote(SEPARATOR)))
                 .map(Role::valueOf)
                 .collect(Collectors.toList());
     }

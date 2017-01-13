@@ -100,7 +100,6 @@ public class Student {
     @JoinColumn(name = "speciality_id")
     private Speciality speciality;
 
-
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;

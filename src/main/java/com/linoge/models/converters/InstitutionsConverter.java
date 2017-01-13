@@ -4,6 +4,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -22,7 +23,7 @@ public final class InstitutionsConverter implements AttributeConverter<List<Stri
 
     @Override
     public List<String> convertToEntityAttribute(String institutionsWithSeparator) {
-        return Arrays.stream(institutionsWithSeparator.split(SEPARATOR))
+        return Arrays.stream(institutionsWithSeparator.split(Pattern.quote(SEPARATOR)))
                 .collect(Collectors.toList());
     }
 }

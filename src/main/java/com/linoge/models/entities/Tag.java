@@ -1,7 +1,6 @@
 package com.linoge.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.linoge.models.dto.TagDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,5 +29,5 @@ public class Tag {
 
     @ManyToMany(mappedBy = "tags")
     @JsonBackReference
-    private List<News> news;
+    private List<Article> articles;
 }

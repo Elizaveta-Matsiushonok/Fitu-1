@@ -1,9 +1,8 @@
 package com.linoge.controllers;
 
 import com.google.common.collect.ImmutableList;
-import com.linoge.models.dto.NewsDTO;
-import com.linoge.servicies.NewsService;
-import org.junit.Before;
+import com.linoge.models.dto.ArticleDTO;
+import com.linoge.servicies.ArticleService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,7 +11,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -23,19 +21,19 @@ import static org.mockito.Mockito.when;
 public class TagControllerTest {
 
     @Mock
-    private NewsService newsService;
+    private ArticleService articleService;
 
     @InjectMocks
-    NewsController sut;
+    ArticleController sut;
 
     @Test
     public void getTags() throws Exception {
         //prepare
-        when(newsService.getNews()).thenReturn(ImmutableList.of());
+        when(articleService.getArticles()).thenReturn(ImmutableList.of());
         //testing
-       List<NewsDTO> news = sut.getAllNews();
+       List<ArticleDTO> news = sut.getAllArticles();
        //validate
-        verify(newsService).getNews();
+        verify(articleService).getArticles();
     }
 
 

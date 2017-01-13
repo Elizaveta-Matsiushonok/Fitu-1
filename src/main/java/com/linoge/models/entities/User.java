@@ -35,20 +35,26 @@ public class User implements UserDetails {
     @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "account_non_expired", nullable = false)
-    private boolean accountNonExpired;
-
     @Column(name = "account_non_locked", nullable = false)
     private boolean accountNonLocked;
-
-    @Column(name = "credentials_non_expired", nullable = false)
-    private boolean credentialsNonExpired;
-
-    @Column(name = "enabled", nullable = false)
-    private boolean enabled;
 
     @Column(name = "authorities", nullable = false)
     @Convert(converter = RoleConverter.class)
     private List<Role> authorities;
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
 }

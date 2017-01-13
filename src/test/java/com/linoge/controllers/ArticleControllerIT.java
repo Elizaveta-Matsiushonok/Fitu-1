@@ -1,7 +1,7 @@
 package com.linoge.controllers;
 
 import com.google.common.collect.ImmutableList;
-import com.linoge.models.dto.NewsDTO;
+import com.linoge.models.dto.ArticleDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,16 +24,16 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class NewsControllerIT {
+public class ArticleControllerIT {
     RestTemplate restTemplate = new RestTemplate();
 
     @Test
     public void getAllNews() throws Exception {
-        ResponseEntity<List<NewsDTO>> responseEntity = restTemplate
+        ResponseEntity<List<ArticleDTO>> responseEntity = restTemplate
                 .exchange("http://localhost:8081/getnews", HttpMethod.GET, null,
-                        new ParameterizedTypeReference<List<NewsDTO>>() {
+                        new ParameterizedTypeReference<List<ArticleDTO>>() {
                         });
-        List<NewsDTO> actualList = responseEntity.getBody();
+        List<ArticleDTO> actualList = responseEntity.getBody();
         //validate
         assertThat(actualList.size(), is(3));
         List<Long> actualId = actualList.stream()

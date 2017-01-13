@@ -4,6 +4,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -26,7 +27,7 @@ public final class JobsConverter implements AttributeConverter<List<String>, Str
 
     @Override
     public List<String> convertToEntityAttribute(String jobsWithSeparator) {
-        return Arrays.stream(jobsWithSeparator.split(SEPARATOR))
+        return Arrays.stream(jobsWithSeparator.split(Pattern.quote(SEPARATOR)))
                 .collect(Collectors.toList());
     }
 }

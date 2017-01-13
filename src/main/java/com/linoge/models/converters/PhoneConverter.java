@@ -4,6 +4,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -25,7 +26,7 @@ public final class PhoneConverter implements AttributeConverter<List<String>, St
 
     @Override
     public List<String> convertToEntityAttribute(String phonesWithSeparator) {
-        return Arrays.stream(phonesWithSeparator.split(SEPARATOR))
+        return Arrays.stream(phonesWithSeparator.split(Pattern.quote(SEPARATOR)))
                 .collect(Collectors.toList());
     }
 }

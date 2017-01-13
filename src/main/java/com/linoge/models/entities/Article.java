@@ -1,18 +1,13 @@
 package com.linoge.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.linoge.models.converters.TagConverter;
-import com.linoge.models.dto.NewsDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Timo on 28.12.2016.
@@ -22,8 +17,8 @@ import java.util.Set;
 @Data
 @Builder
 @AllArgsConstructor
-@Table(name = "news")
-public class News {
+@Table(name = "article")
+public class Article {
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
@@ -43,7 +38,7 @@ public class News {
 
     @ManyToMany
     @JoinTable(
-            name = "news_tags",
+            name = "articles_tags",
             joinColumns = @JoinColumn(name = "news_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id")
     )

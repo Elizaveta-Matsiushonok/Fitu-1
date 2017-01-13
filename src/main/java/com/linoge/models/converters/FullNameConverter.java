@@ -6,6 +6,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -30,7 +31,7 @@ public final class FullNameConverter implements AttributeConverter<FullName, Str
 
     @Override
     public FullName convertToEntityAttribute(String fullNameWithSeparator) {
-        return toFullName(Arrays.stream(fullNameWithSeparator.split(SEPARATOR))
+        return toFullName(Arrays.stream(fullNameWithSeparator.split(Pattern.quote(SEPARATOR)))
                 .collect(Collectors.toList()));
 
 
