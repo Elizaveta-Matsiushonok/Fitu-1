@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
  */
 public final class ArticleConverter {
 
+    private final static String BODY_TAG = "{<article_body>}";
+
     private ArticleConverter() {
     }
-
-    private final static String BODY_TAG = "{<article_body>}";
 
     public static List<ArticleDTO> convertArticleCollectionToDTO(List<Article> articles) {
         return articles.stream()
@@ -27,11 +27,11 @@ public final class ArticleConverter {
                 .collect(Collectors.toList());
     }
 
-    public static String getHeader(String text){
+    public static String getHeader(String text) {
         return text.substring(0, text.indexOf(BODY_TAG));
     }
 
-    public static String getBody(String text){
+    public static String getBody(String text) {
         return text.substring(text.indexOf(BODY_TAG) + BODY_TAG.length());
     }
 
