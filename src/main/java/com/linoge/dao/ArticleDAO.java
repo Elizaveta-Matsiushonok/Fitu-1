@@ -1,4 +1,4 @@
-package com.linoge.repositories;
+package com.linoge.dao;
 
 import com.linoge.models.entities.Article;
 import com.linoge.models.entities.Tag;
@@ -11,6 +11,6 @@ import java.util.List;
  * Created by Timo on 28.12.2016.
  */
 @Repository
-public interface ArticleRepository extends JpaRepository<Article, Long> {
+public interface ArticleDAO extends JpaRepository<Article, Long> {
     List<Article> findByTagsContaining(Tag tagById);
 }

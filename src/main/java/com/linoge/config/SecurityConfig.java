@@ -21,12 +21,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private SuccessAuthenticationHandler successAuthenticationHandler;
-
-    @Autowired
-    private FailureAuthenticationHandler failureAuthenticationHandler;
-
-    @Autowired
     private UserDetailsService userDetailsService;
 
     @Bean
@@ -34,12 +28,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(bcryptPasswordEncoder());
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/getuser", "/gettags", "/createuser",
-                         "/js/**", "/css/**","/templates/**","/favicon.ico", "/index", "/").permitAll()
+                .antMatchers("/index", "/", "/departments",
+                         "/js/**", "/css/**","/templates/**","/favicon.ico").permitAll()
                 .anyRequest().hasRole("ADMIN").and()
                 .formLogin()
                 .loginPage("/login").permitAll()
@@ -48,12 +49,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout").permitAll()
                 .and().csrf().disable();
     }
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(bcryptPasswordEncoder());
-    }
-
-
 }

@@ -1,13 +1,14 @@
-package com.linoge.servicies;
+package com.linoge.servicies.implementations;
 
 import com.linoge.models.converters.ArticleConverter;
 import com.linoge.models.converters.SimpleDateConverter;
 import com.linoge.models.entities.Article;
-import com.linoge.repositories.ArticleRepository;
+import com.linoge.dao.ArticleDAO;
+import com.linoge.servicies.ArticleService;
+import com.linoge.servicies.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,18 +19,18 @@ import java.util.stream.Collectors;
 public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
-    ArticleRepository articleRepository;
+    ArticleDAO articleDAO;
 
     @Autowired
     TagService tagService;
 
     public List<Article> getArticles(){
-        return articleRepository.findAll();
+        return articleDAO.findAll();
     }
 
     @Override
     public Long createArticle(String text, String title, List<Long> tagsId){
-        return articleRepository.saveAndFlush(Article.builder()
+        return articleDAO.saveAndFlush(Article.builder()
                 .header(ArticleConverter.getHeader(text))
                 .body(ArticleConverter.getBody(text))
                 .title(title)
@@ -42,17 +43,17 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> getArticleByTag(Long tagId) {
-        return articleRepository.findByTagsContaining(tagService.findTagById(tagId));
+        return articleDAO.findByTagsContaining(tagService.findTagById(tagId));
     }
 
     @Override
     public Article getArticleById(Long articleId) {
-        return articleRepository.findOne(articleId);
+        return articleDAO.findOne(articleId);
     }
 
     @Override
     public void deleteArticleById(Long id) {
-        articleRepository.delete(id);
+        articleDAO.delete(id);
     }
 
 

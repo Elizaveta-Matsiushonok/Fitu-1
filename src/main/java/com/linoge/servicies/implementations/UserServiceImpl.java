@@ -1,8 +1,9 @@
-package com.linoge.servicies;
+package com.linoge.servicies.implementations;
 
 import com.linoge.models.entities.User;
 import com.linoge.models.enums.Role;
-import com.linoge.repositories.UserRepository;
+import com.linoge.dao.UserDAO;
+import com.linoge.servicies.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository userRepository;
+    UserDAO userDAO;
 
 
     @Override
@@ -28,6 +29,6 @@ public class UserServiceImpl implements UserService {
                 .authorities(Arrays.asList(Role.ROLE_ADMIN,
                         Role.ROLE_USER))
                 .build();
-        userRepository.saveAndFlush(user);
+        userDAO.saveAndFlush(user);
     }
 }
