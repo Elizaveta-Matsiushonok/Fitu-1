@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="../static/js/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+<p>Hello world!!</p>
+<form>
+<textarea name="editor1" id="editor1" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor.
+            </textarea>
+<script>CKEDITOR.replace( 'editor1' );</script>
+</form>
+</body>
+</html>
