@@ -13,5 +13,10 @@
             </textarea>
 <script>CKEDITOR.replace( 'editor1' );</script>
 </form>
+<form method="POST" enctype="multipart/form-data" action="/upload">
+    <input type="file" name="file">File to upload:</input>><br />
+    <input type="text" name="name">Name:</input><br /> <br />
+    <input type="submit" value="Upload">Press here to upload the file!</input>
+</form>
 </body>
 </html>

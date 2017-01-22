@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link href="css/bootstrap.min.css"
+          rel="stylesheet" media="screen" />
+</head>
+<body>
+<p>This is articles HTML</p>
+<div th:each="article : ${articles}">
+    <tr>
+        <td th:text="${article.id}">id</td>
+        <td><a href="#" th:text="${article.title}">Title ...</a></td>
+        <td th:text="${article.header}">Header ...</td>
+        <td><a th:href="@{/article(id=${article.id})}"  class="btn btn-primary btn-lg active" role="button">читать</a></td>
+    </tr>
+</div>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+</html>

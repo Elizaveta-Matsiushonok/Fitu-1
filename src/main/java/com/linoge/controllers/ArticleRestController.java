@@ -18,7 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/")
-public class ArticleController {
+public class ArticleRestController {
 
     @Autowired
     ArticleService articleService;
@@ -58,25 +58,4 @@ public class ArticleController {
         articleService.deleteArticleById(id);
         return articleService.createArticle(text, title, tagsId);
     }
-
-    @RequestMapping(path = "/addimage", method = RequestMethod.POST)
-    public String addImage(@RequestParam("name") String name,
-                           @RequestParam ("file") MultipartFile file){
-        if (!file.isEmpty()) {
-            try {
-                byte[] bytes = file.getBytes();
-                BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File(name + "-uploaded")));
-                stream.write(bytes);
-                stream.close();
-                return name + "-uploaded";
-            } catch (Exception e) {
-                return "Вам не удалось загрузить " + name + " => " + e.getMessage();
-            }
-        } else {
-            return "Вам не удалось загрузить " + name + " потому что файл пустой.";
-        }
-    }
-
-
 }
