@@ -17,12 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ArticleDTO {
-
     public Long id;
-
     public String title;
-
     public String header;
-
     public List<TagDTO> tags;
 }

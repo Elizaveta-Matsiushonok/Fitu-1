@@ -42,6 +42,9 @@ public class User implements UserDetails {
     @Convert(converter = RoleConverter.class)
     private List<Role> authorities;
 
+    @OneToOne(mappedBy = "user")
+    private Student student;
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
