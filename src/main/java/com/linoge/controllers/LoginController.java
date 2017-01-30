@@ -1,4 +1,4 @@
-package com.linoge.controllers.template;
+package com.linoge.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

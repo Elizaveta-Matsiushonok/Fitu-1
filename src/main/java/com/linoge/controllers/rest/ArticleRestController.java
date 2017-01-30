@@ -1,4 +1,4 @@
-package com.linoge.controllers;
+package com.linoge.controllers.rest;
 
 import com.linoge.models.converters.ArticleConverter;
 import com.linoge.models.dto.ArticleDTO;
