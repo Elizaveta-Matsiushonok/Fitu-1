@@ -22,9 +22,6 @@ public final class FullNameConverter implements AttributeConverter<FullName, Str
     private final int FIRSTNAME_INDEX = 1;
     private final int PATRONYMIC_INDEX = 2;
 
-    public FullNameConverter() {
-    }
-
     @Override
     public String convertToDatabaseColumn(FullName fullName) {
         return fullName.getSurName() + SEPARATOR + fullName.getFirstName() + SEPARATOR + fullName.getPatronymic();

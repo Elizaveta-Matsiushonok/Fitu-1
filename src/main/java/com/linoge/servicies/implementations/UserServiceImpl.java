@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO userDAO;
 
-
     @Override
     public void createUser(String userName, String password) {
         User user = User.builder()

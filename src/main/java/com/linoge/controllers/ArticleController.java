@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -22,20 +23,20 @@ public class ArticleController {
     @Autowired
     ArticleService articleService;
 
-    @RequestMapping("/")
-    public String greeting(@RequestParam(value="name", required=false, defaultValue="World")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(@RequestParam(value="name", required=false, defaultValue="World")
                                        String name, Model model) {
         model.addAttribute("name", name);
         return "index";
     }
 
-    @RequestMapping("/articlecreator")
+    @RequestMapping(value = "/articlecreator", method = RequestMethod.GET)
     public String articleCreator(){
         return "articlecreator";
     }
 
     @ModelAttribute("article")
-    @RequestMapping("/article")
+    @RequestMapping(value = "/article", method = RequestMethod.GET)
     public Article article(@RequestParam(value = "id", required = false, defaultValue = "1")
                           Long id){
         return articleService.getArticleById(id);

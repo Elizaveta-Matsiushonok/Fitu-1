@@ -1,5 +1,6 @@
 package com.linoge.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.linoge.models.converters.RoleConverter;
 import com.linoge.models.enums.Role;
 import lombok.AllArgsConstructor;
@@ -41,9 +42,6 @@ public class User implements UserDetails {
     @Column(name = "authorities", nullable = false)
     @Convert(converter = RoleConverter.class)
     private List<Role> authorities;
-
-    @OneToOne(mappedBy = "user")
-    private Student student;
 
     @Override
     public boolean isAccountNonExpired() {

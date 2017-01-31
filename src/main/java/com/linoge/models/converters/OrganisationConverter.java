@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.toList;
  * Created by Timo on 30.01.2017.
  */
 public final class OrganisationConverter {
-    private OrganisationConverter(){
+    private OrganisationConverter() {
 
     }
 
