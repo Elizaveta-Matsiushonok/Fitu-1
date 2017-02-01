@@ -17,9 +17,6 @@ public final class RoleConverter implements AttributeConverter<List<Role>, Strin
 
     private final String SEPARATOR = "|";
 
-    public RoleConverter() {
-    }
-
     @Override
     public String convertToDatabaseColumn(List<Role> roles) {
         return roles.stream()

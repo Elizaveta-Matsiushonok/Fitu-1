@@ -11,7 +11,6 @@ public final class SimpleDateConverter {
     private static final String SIMPLE_DATE_PATTERN = "yyyy-MM-dd";
 
     private SimpleDateConverter() {
-
     }
 
     public static String getSimpleFormatDate(Date date) {

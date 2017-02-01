@@ -1,4 +1,4 @@
-package com.linoge.controllers;
+package com.linoge.controllers.rest;
 
 import com.linoge.models.converters.UserConverter;
 import com.linoge.models.dto.UserDTO;

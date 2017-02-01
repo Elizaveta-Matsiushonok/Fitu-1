@@ -42,5 +42,10 @@
 
 <input id="idTag"></input>
 <button onclick="Article.getArticleById($('#idTag').val())">Get article by id</button>
+<form method="POST" enctype="multipart/form-data" action="/upload">
+    <input type="file" name="file">File to upload:</input>><br />
+    <input type="text" name="name">Name:</input><br /> <br />
+    <input type="submit" value="Upload">Press here to upload the file!</input>
+</form>
 </body>
 </html>

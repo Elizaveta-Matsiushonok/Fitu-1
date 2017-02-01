@@ -17,12 +17,10 @@ import java.util.stream.Collectors;
 public final class FullNameConverter implements AttributeConverter<FullName, String> {
 
     private final String SEPARATOR = "|";
+    private static final String SPACE = " ";
     private final int SURNAME_INDEX = 0;
     private final int FIRSTNAME_INDEX = 1;
     private final int PATRONYMIC_INDEX = 2;
-
-    public FullNameConverter() {
-    }
 
     @Override
     public String convertToDatabaseColumn(FullName fullName) {
@@ -35,6 +33,10 @@ public final class FullNameConverter implements AttributeConverter<FullName, Str
                 .collect(Collectors.toList()));
 
 
+    }
+
+    public static String convertFullNameToString(FullName fullName){
+        return fullName.getSurName() + SPACE + fullName.getFirstName() + SPACE + fullName.getPatronymic();
     }
 
     private FullName toFullName(List<String> fullNameData) {

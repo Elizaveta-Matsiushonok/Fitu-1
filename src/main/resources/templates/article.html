@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<p>Article number <span th:text="${article.id}">id...</span> </p>
+<p>Article title <span th:text="${article.title}">title...</span> </p>
+<p>Article body <span th:text="${article.body}">body...</span> </p>
+<p>Article date <span th:text="${article.date}">date...</span> </p>
+<p th:each="tag : ${article.tags}">Article tag
+<p><span th:text="${tag.id}">tag...</span></p>
+<p><span th:text="${tag.title}">tag...</span></p>
+</p>
+<p>Back <a th:href="@{/articles}"
+           class="btn btn-primary btn-lg active" role="button">Назад ко все новостям</a></p>
+</body>
+</html>
