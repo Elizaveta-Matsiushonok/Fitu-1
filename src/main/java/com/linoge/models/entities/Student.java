@@ -31,13 +31,6 @@ public class Student {
     @Convert(converter = FullNameConverter.class)
     private FullName fullName;
 
-    @Column(name = "gender", nullable = false)
-    private String gender;
-
-    @OneToOne
-    @JoinColumn(name = "speciality_id")
-    private Speciality speciality;
-
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;

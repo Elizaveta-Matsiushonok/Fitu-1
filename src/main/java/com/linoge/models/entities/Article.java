@@ -24,6 +24,11 @@ public class Article {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    /**
+     * title, header and body.
+     * Create and change with CKeditor. Contains article text as html and css with links on images in cloud.
+     */
+
     @Column(name = "title", nullable = false)
     private String title;
 
@@ -39,7 +44,7 @@ public class Article {
     @ManyToMany
     @JoinTable(
             name = "articles_tags",
-            joinColumns = @JoinColumn(name = "news_id", referencedColumnName = "id"),
+            joinColumns = @JoinColumn(name = "article_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id")
     )
     @JsonManagedReference
