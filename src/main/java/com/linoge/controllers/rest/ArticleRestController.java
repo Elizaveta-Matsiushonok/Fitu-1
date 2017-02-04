@@ -1,17 +1,17 @@
 package com.linoge.controllers.rest;
 
-import com.linoge.models.converters.ArticleConverter;
 import com.linoge.models.dto.ArticleDTO;
 import com.linoge.models.entities.Article;
 import com.linoge.servicies.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
+
+import static com.linoge.models.converters.ArticleConverter.convertArticleCollectionToDTO;
 
 /**
  * Created by Timo on 28.12.2016.
@@ -25,12 +25,12 @@ public class ArticleRestController {
 
     @RequestMapping(path = "/getarticles", method = RequestMethod.GET)
     public List<ArticleDTO> getAllArticles(){
-        return ArticleConverter.convertArticleCollectionToDTO(articleService.getArticles());
+        return convertArticleCollectionToDTO(articleService.getArticles());
     }
 
     @RequestMapping(path = "/getarticlebytag", method = RequestMethod.GET)
     public List<ArticleDTO> getArticleByTag(@RequestParam("tag_id") Long tagId){
-        return ArticleConverter.convertArticleCollectionToDTO(articleService.getArticleByTag(tagId));
+        return convertArticleCollectionToDTO(articleService.getArticleByTag(tagId));
     }
 
     @RequestMapping(path = "/getarticlebyid", method = RequestMethod.GET)

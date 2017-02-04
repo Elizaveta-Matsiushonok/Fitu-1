@@ -5,6 +5,7 @@ import com.linoge.models.entities.Subject;
 
 import java.util.List;
 
+import static com.linoge.models.converters.LectorConverter.convertLectorCollectionToDTO;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -21,5 +22,14 @@ public final class SubjectConverter {
                         .description(subject.getDescription())
                         .build())
                 .collect(toList());
+    }
+
+    public static SubjectDTO convertSubjectToDTO(Subject subject) {
+        return SubjectDTO.builder()
+                .id(subject.getId())
+                .description(subject.getDescription())
+                .information(subject.getInformation())
+                .lectors(convertLectorCollectionToDTO(subject.getLectors()))
+                .build();
     }
 }

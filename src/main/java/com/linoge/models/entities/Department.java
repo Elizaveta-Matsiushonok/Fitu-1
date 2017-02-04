@@ -28,4 +28,12 @@ public class Department {
 
     @OneToMany(mappedBy = "department")
     private List<Lector> lectors;
+
+    public void addLector(Lector lector) {
+        lectors.add(lector);
+    }
+
+    public void removeLector(Lector lector) {
+        lectors.remove(lector);
+    }
 }

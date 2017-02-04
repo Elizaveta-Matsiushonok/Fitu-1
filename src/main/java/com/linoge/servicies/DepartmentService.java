@@ -13,4 +13,8 @@ public interface DepartmentService {
     Department getDepartmentById(Long id);
 
     void createDepartment(String description);
+
+    void addLectors(Long departmentId, List<Long> lectorsId);
+
+    void deleteLectors(Long departmentId, List<Long> lectorsId);
 }

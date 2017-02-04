@@ -30,8 +30,6 @@ public class Lector {
     @Convert(converter = FullNameConverter.class)
     private FullName fullName;
 
-    @Column(name = "description")
-    private String description;
 
     /**
      * Create and change with CKeditor. Contains information about lector: publishing, photos, etc.

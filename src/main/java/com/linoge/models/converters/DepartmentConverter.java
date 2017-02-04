@@ -5,6 +5,7 @@ import com.linoge.models.entities.Department;
 
 import java.util.List;
 
+import static com.linoge.models.converters.LectorConverter.convertLectorCollectionToDTO;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -19,7 +20,16 @@ public final class DepartmentConverter {
                 .map(department -> DepartmentDTO.builder()
                         .id(department.getId())
                         .description(department.getDescription())
+                        .lectors(convertLectorCollectionToDTO(department.getLectors()))
                         .build())
                 .collect(toList());
+    }
+
+    public static DepartmentDTO convertDepartmentToDTO(Department department) {
+        return DepartmentDTO.builder()
+                .id(department.getId())
+                .description(department.getDescription())
+                .lectors(convertLectorCollectionToDTO(department.getLectors()))
+                .build();
     }
 }
