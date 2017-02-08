@@ -30,35 +30,39 @@
     <br/>
     <br/>
     <br/>
-    <form action="#" method="post" id="commentform">
-        <p>
-        <div class="form-group">
-        <input type="text" id="title" size="50" placeholder="Your Title"  />
-
-        <div class="col-sd-6 col-md-4">
-                <label class="control-label col-sm-offset-2 col-sm-2" for="tags" >Tags</label>
-                <select id="tags" class="form-control" onchange="Tag.addTagToList()">
-                </select>
-            </div>
+    <p>
+    <div class="form-group" style="margin-left: 13%">
+        <div class="col-md-4"><input id="title" class="form-control" placeholder="Your Title" /></div>
+        <div class="col-md-4">
+            <select id="tags" class="form-control" onchange="Tag.addTagToList()">
+            </select>
         </div>
-        </p>
-        <p>
+    </div>
+    <div id="btnList">
+        <!--<div class="col-sm-4 alert alert-info alert-dismissable"  style="margin-left: 13%;  margin-top: 10px; width: 30px;">-->
+            <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>-->
+        <!--</div>  -->
+    </div>
+
+    </p>
+    <p>
+    <div style="margin-left: 13%; margin-top: 10%;">
         <form>
-            <textarea name="editor1" id="editor1" cols="50%" rows="10" >
-            <!--<textarea name="editor1" id="editor1" rows="10" cols="80">-->
+            <textarea name="editor1" id="editor1" cols="50%" rows="10">
                 This is my textarea to be replaced with CKEditor.
             </textarea>
             <script>CKEDITOR.replace( 'editor1' );</script>
         </form>
-        </p>
-        <p>
-        <div class="form-group">
-            <!--<input name="submit" type="submit" id="submit" tabindex="5" class="submit_button" value="Post Comment" />-->
-            <button id="submit" tabindex="5" class="submit_button" onclick="Article.postArticle()">Save article</button>
-            <button tabindex="5" class="submit_button" onclick="Article.addTag()">Add tag</button>
-        </div>
-        </p>
-    </form>
+    </div>
+    </p>
+    <p>
+    <div class="form-group" style="padding-left: 35%;">
+
+        <button id="submit" tabindex="5" class="submit_button" onclick="Article.postArticle()">Save article</button>
+        <button tabindex="5" class="submit_button" onclick="Article.addTag()">Add tag</button>
+    </div>
+    </p>
+
 </div>
 </body>
 </html>
