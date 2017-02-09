@@ -6,11 +6,7 @@ var Tag = {
         var tag = _.find(this.tagList, {title: tagTitle});
         if (!_.includes(this.selectedTags, tag.id)) {
             this.selectedTags.push(tag.id);
-            var r = $('<input type="button" value="tagTitle"/>');
-            var r= $('<div class="col-sm-4 alert alert-info alert-dismissable"  style="margin-left: 13%;  margin-top: 10px; width: 30px;">' +
-                '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' + tagTitle +
-           ' </div> ');
-            $('body').append(r);
+            // $( "#btnList" ).append( '<a href="#" style="font-size: 8pt;">' + tagTitle + '</a>' );
         }
         console.log(this.selectedTags);
     },
