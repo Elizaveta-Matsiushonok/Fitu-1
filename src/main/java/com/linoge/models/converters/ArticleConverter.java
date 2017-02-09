@@ -18,6 +18,15 @@ public final class ArticleConverter {
     private ArticleConverter() {
     }
 
+    public static ArticleDTO convertArticleToDTO(Article article){
+        return ArticleDTO.builder()
+                .id(article.getId())
+                .title(article.getTitle())
+                .header(article.getHeader())
+                .tags(convertTagsCollectionToDTO(article.getTags()))
+                .build();
+    }
+
     public static List<ArticleDTO> convertArticleCollectionToDTO(List<Article> articles) {
         return articles.stream()
                 .map(element -> ArticleDTO.builder()

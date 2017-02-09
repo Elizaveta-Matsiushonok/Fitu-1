@@ -38,7 +38,7 @@ public class Article {
     @Column(name = "body", nullable = false)
     private String body;
 
-    @Column(name = "date_of_record", nullable = false)
+    @Column(name = "date_of_record")
     private String date;
 
     @ManyToMany

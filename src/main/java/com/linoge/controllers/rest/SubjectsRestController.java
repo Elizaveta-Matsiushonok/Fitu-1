@@ -31,7 +31,7 @@ public class SubjectsRestController {
     /**
      * Use when need to select subjects for concrete department or speciality.
      */
-    @RequestMapping(path = "/getsubjects", method = RequestMethod.GET)
+    @RequestMapping(path = "/getsubjectsbyid", method = RequestMethod.GET)
     public List<SubjectDTO> getSubjects(@RequestParam("id") List<Long> subjectsId) {
         return convertSubjectCollectionToDTO(subjectService.getSubjects(subjectsId));
     }
