@@ -1,14 +1,15 @@
 package com.linoge.controllers.rest;
 
 import com.linoge.dao.LectorDAO;
-import com.linoge.models.entities.Lector;
+import com.linoge.models.dto.LectorDTO;
+import com.linoge.servicies.LectorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.linoge.models.converters.LectorConverter.convertLectorCollectionToDTO;
 
 /**
  * Created by Timo on 04.02.2017.
@@ -20,29 +21,28 @@ public class LectorRestController {
     @Autowired
     LectorDAO lectorDAO;
 
+    @Autowired
+    LectorService lectorService;
+
     @RequestMapping(path = "/getlectors", method = RequestMethod.GET)
-    public List<Lector> getTags() {
-        return lectorDAO.findAll();
+    public List<LectorDTO> getLectors() {
+        return convertLectorCollectionToDTO(lectorDAO.findAll());
     }
 
-    @RequestMapping(path = "/createlector", method = RequestMethod.POST)
-    public void addTag(@RequestParam("lector") Lector lector) {
-        lectorDAO.saveAndFlush(lector);
+    @RequestMapping(path = "/createlector", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void createLector(@RequestBody LectorDTO lector) {
+        lectorService.createLectorFromDTO(lector);
     }
 
     @RequestMapping(path = "/deletelector", method = RequestMethod.POST)
-    public void deleteTag(@RequestParam("id") Long id) {
+    public void deleteLector(@RequestParam("id") Long id) {
         lectorDAO.delete(id);
     }
 
     @RequestMapping(path = "/rewritelector", method = RequestMethod.POST)
-    public void rewriteLector(@RequestParam("lector") Lector lector) {
-        Lector lectorInMemory = lectorDAO.findOne(lector.getId());
-        lectorInMemory.setFullName(lector.getFullName());
-        lectorInMemory.setInformation(lector.getInformation());
-        lectorDAO.saveAndFlush(lectorInMemory);
+    public void rewriteLector(@RequestBody LectorDTO lector) {
+        lectorService.updateLectorFromDTO(lector);
     }
-
-    //add subject
-    //del subject
 }

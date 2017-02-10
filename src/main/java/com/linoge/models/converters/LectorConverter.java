@@ -6,6 +6,7 @@ import com.linoge.models.entities.Lector;
 import java.util.List;
 
 import static com.linoge.models.converters.FullNameConverter.convertFullNameToString;
+import static com.linoge.models.converters.SubjectConverter.convertSubjectCollectionToDTO;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -22,6 +23,14 @@ public final class LectorConverter {
                         .fullName(convertFullNameToString(lector.getFullName()))
                         .build())
                 .collect(toList());
+    }
 
+    public static LectorDTO convertLectorToDTO(Lector lector) {
+        return LectorDTO.builder()
+                .id(lector.getId())
+                .fullName(convertFullNameToString(lector.getFullName()))
+                .information(lector.getInformation())
+                .subjects(convertSubjectCollectionToDTO(lector.getSubjects()))
+                .build();
     }
 }

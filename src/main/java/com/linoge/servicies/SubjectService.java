@@ -1,5 +1,6 @@
 package com.linoge.servicies;
 
+import com.linoge.models.dto.SubjectDTO;
 import com.linoge.models.entities.Subject;
 
 import java.util.List;
@@ -14,4 +15,8 @@ public interface SubjectService {
     List<Subject> getAll();
 
     Subject getSubject(Long id);
+
+    Long updateSubjectFromDTO(SubjectDTO subject);
+
+    Long createSubjectFromDTO(SubjectDTO subject);
 }

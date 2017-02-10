@@ -28,7 +28,7 @@ public class Subject {
     private String description;
 
     /**
-     * Create and change with CKeditor. Contains information about subject and link on GoogleDrive.
+     * Create and change with simple TextArea. Contains information about subject and link on GoogleDrive.
      */
     @Column(name = "information")
     private String information;

@@ -38,12 +38,22 @@ public class DepartmentRestController {
         departmentService.createDepartment(descritpion);
     }
 
+    /**
+     * Add lectors to department by department id.
+     * @param id
+     * @param lectors
+     */
     @RequestMapping(path = "/addlectors", method = RequestMethod.POST)
     public void addLectors(@RequestParam("id") Long id,
                            @RequestParam("lectors") List<Long> lectors) {
         departmentService.addLectors(id, lectors);
     }
 
+    /**
+     * Remove lectors from department by department id.
+     * @param id
+     * @param lectors
+     */
     @RequestMapping(path = "/removelectors", method = RequestMethod.POST)
     public void removeLectors(@RequestParam("id") Long id,
                               @RequestParam("lectors") List<Long> lectors) {

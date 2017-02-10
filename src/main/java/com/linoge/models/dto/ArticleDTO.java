@@ -28,5 +28,6 @@ public class ArticleDTO {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public String date;
 
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<TagDTO> tags;
 }

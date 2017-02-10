@@ -1,12 +1,10 @@
 package com.linoge.controllers.rest;
 
+import com.linoge.dao.SubjectDAO;
 import com.linoge.models.dto.SubjectDTO;
 import com.linoge.servicies.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,9 +17,12 @@ import static com.linoge.models.converters.SubjectConverter.convertSubjectToDTO;
 @RestController
 @RequestMapping("/")
 public class SubjectsRestController {
-    @Autowired
-    private SubjectService subjectService;
 
+    @Autowired
+    SubjectService subjectService;
+
+    @Autowired
+    SubjectDAO subjectDAO;
 
     @RequestMapping(path = "/getsubjects", method = RequestMethod.GET)
     public List<SubjectDTO> getAllSubjects() {
@@ -41,9 +42,21 @@ public class SubjectsRestController {
         return convertSubjectToDTO(subjectService.getSubject(id));
     }
 
+    @RequestMapping(path = "/createsubject", method = RequestMethod.POST)
+    public Long createSubject(@RequestBody SubjectDTO subject){
+        return subjectService.createSubjectFromDTO(subject);
+    }
 
-    //create subject
-    //delete subject
+    @RequestMapping(path = "/deletesubject", method = RequestMethod.POST)
+    public void deleteSubject(@RequestParam("id") Long id){
+        subjectDAO.delete(id);
+    }
+
+    @RequestMapping(path = "/updatesubject", method = RequestMethod.POST)
+    public Long updateSubject(@RequestBody SubjectDTO subject){
+        return subjectService.updateSubjectFromDTO(subject);
+    }
+
 }
 
 
