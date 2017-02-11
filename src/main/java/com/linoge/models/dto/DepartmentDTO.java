@@ -1,33 +1,24 @@
 package com.linoge.models.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import java.util.List;
 
 /**
- * Created by Timo on 28.12.2016.
+ * Created by Timo on 03.02.2017.
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ArticleDTO {
+public class DepartmentDTO {
     public Long id;
-    public String title;
-    public String header;
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String body;
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String date;
+    public String description;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public List<TagDTO> tags;
+    public List<LectorDTO> lectors;
 }

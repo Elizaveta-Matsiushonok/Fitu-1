@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * Created by Timo on 09.01.2017.
  */
@@ -28,6 +30,6 @@ public final class RoleConverter implements AttributeConverter<List<Role>, Strin
     public List<Role> convertToEntityAttribute(String rolesWithSeparator) {
         return Arrays.stream(rolesWithSeparator.split(Pattern.quote(SEPARATOR)))
                 .map(Role::valueOf)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 }

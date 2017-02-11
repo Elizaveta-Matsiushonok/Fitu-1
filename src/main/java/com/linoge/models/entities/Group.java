@@ -29,4 +29,8 @@ public class Group {
 
     @OneToMany(mappedBy = "group")
     private Set<Student> students;
+
+    @ManyToOne
+    @JoinColumn(name = "speciality_id")
+    private Speciality speciality;
 }

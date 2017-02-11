@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class LoginController {
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLogin(@RequestParam(value = "error", required = false) String error,
-                           @RequestParam(value = "logout", required = false) String logout,
-                           Model model){
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
 
-        model.addAttribute("error", error != null);
-        model.addAttribute("logout", logout != null);
+    @RequestMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
         return "login";
     }
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Timo on 11.01.2017.
@@ -29,6 +30,6 @@ public class Speciality {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @OneToOne(mappedBy = "speciality")
-    private Student student;
+    @OneToMany(mappedBy = "speciality")
+    private List<Group> groups;
 }

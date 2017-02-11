@@ -4,7 +4,8 @@ import com.linoge.models.dto.TagDTO;
 import com.linoge.models.entities.Tag;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by Timo on 30.12.2016.
@@ -20,6 +21,6 @@ public final class TagConverter {
                         .id(tag.getId())
                         .title(tag.getTitle())
                         .build())
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 }
