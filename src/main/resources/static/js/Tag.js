@@ -5,8 +5,8 @@ var Tag = {
         var tagTitle = $("#tags option:selected").val();
         var tag = _.find(this.tagList, {title: tagTitle});
         if (!_.includes(this.selectedTags, tag.id)) {
-            this.selectedTags.push(tag.id);
-            // $( "#btnList" ).append( '<a href="#" style="font-size: 8pt;">' + tagTitle + '</a>' );
+            this.selectedTags.push({"id":tag.id});
+            $( "#btnList" ).append( '<a href="#" style="font-size: 8pt;">' + tagTitle + '</a>&nbsp&nbsp' );
         }
         console.log(this.selectedTags);
     },

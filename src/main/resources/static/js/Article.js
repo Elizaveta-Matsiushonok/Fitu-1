@@ -2,15 +2,22 @@ var Article = {
     article: {},
     postArticle: function postArticle() {
         var article = {};
+        article.id = null;
         article.title = $('#title').val();
-        article.text = CKEDITOR.instances.editor1.getData();
+        var text = CKEDITOR.instances.editor1.getData();
+        var res = text.split('<p>{article_body}</p>');
+        article.header = res[0];
+        article.body = res[1];
         article.tags = Tag.selectedTags;
+        console.log(article);
         $.ajax({
             type: "POST",
-            url: "http://localhost:8081/addarticle",
-            data: article,
+            url: "http://localhost:8081/createarticle",
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            data: JSON.stringify(article),
             success: function () {
-                console.log(' 200 OK');
+                location.reload();
             }
         });
     },
@@ -30,7 +37,7 @@ var Article = {
     },
 
     addTag: function () {
-        CKEDITOR.instances.editor1.insertText('<{<article_body>}>');
+        CKEDITOR.instances.editor1.insertText('{article_body}');
     },
 
     getArticleByTag: function (id) {
