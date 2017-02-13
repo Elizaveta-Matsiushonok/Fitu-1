@@ -8,8 +8,10 @@ body {
         }
 #description { color: white; }
 #fitu-explore {
-   background-repeat: no-repeat; background-size: 100%;
+   background-repeat: no-repeat;
+    background-size: 100%;
     background-position: center top;
+    height: 530px;
      }
 .head {
     size: 250px;
