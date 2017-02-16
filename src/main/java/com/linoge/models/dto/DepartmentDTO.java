@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class DepartmentDTO {
     public Long id;
-    public String description;
+    public String name;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<LectorDTO> lectors;

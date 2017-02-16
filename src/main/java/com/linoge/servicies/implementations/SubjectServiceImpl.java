@@ -42,7 +42,7 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectDAO.saveAndFlush(Subject.builder()
                 .id(subject.getId())
                 .information(subject.getInformation())
-                .description(subject.getDescription())
+                .name(subject.getName())
                 .build())
                 .getId();
     }
@@ -51,7 +51,7 @@ public class SubjectServiceImpl implements SubjectService {
     public Long createSubjectFromDTO(SubjectDTO subject) {
         return subjectDAO.saveAndFlush(Subject.builder()
                 .information(subject.getInformation())
-                .description(subject.getDescription())
+                .name(subject.getName())
                 .build())
                 .getId();
 

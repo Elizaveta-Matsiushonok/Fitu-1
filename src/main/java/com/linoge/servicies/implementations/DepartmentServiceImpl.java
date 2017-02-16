@@ -34,7 +34,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void createDepartment(String description) {
         departmentDAO.saveAndFlush(Department.builder()
-                .description(description)
+                .name(description)
                 .build());
     }
 

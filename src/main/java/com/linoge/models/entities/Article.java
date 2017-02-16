@@ -41,6 +41,9 @@ public class Article {
     @Column(name = "date_of_record")
     private String date;
 
+    @OneToMany(mappedBy = "article")
+    private List<Image> images;
+
     @ManyToMany
     @JoinTable(
             name = "articles_tags",

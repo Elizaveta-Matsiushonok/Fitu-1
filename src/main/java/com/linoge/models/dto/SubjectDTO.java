@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class SubjectDTO {
     public Long id;
-    public String description;
+    public String name;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public String information;

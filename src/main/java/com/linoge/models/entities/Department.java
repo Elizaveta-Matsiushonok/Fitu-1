@@ -23,8 +23,8 @@ public class Department {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "name")
+    private String name;
 
     @OneToMany(mappedBy = "department")
     private List<Lector> lectors;

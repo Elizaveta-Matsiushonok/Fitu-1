@@ -8,24 +8,25 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 /**
- * Created by Timo on 30.01.2017.
+ * Created by Timo on 13.02.2017.
  */
 @Entity
 @NoArgsConstructor
 @Data
 @Builder
 @AllArgsConstructor
-@Table(name = "organisation")
-public class Organisation {
+@Table(name = "image")
+public class Image {
+
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "path")
+    private String path;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @JoinColumn(name = "article_id")
+    private Article article;
 }
