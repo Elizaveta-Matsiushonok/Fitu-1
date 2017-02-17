@@ -4,7 +4,9 @@
 function uploadFormData(){
     $('#result').html('');
     var myForm = new FormData();
-    myForm.append("file", file2.files[0]);
+    for (i = 0; i < file.files.length; i++) {
+        myForm.append("file" + i, file.files[i]);
+    }
 
     $.ajax({
         url: 'http://localhost:8081/upload',

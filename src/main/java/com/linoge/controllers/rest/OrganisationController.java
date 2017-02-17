@@ -23,6 +23,6 @@ public class OrganisationController {
 
     @RequestMapping(path = "/getorganisations", method = RequestMethod.GET)
     public List<OrganisationDTO> getOrganisationsByUserId(@RequestParam(value = "id") Long id){
-        return OrganisationConverter.convertOrganisationConverterToDTO(organisationService.getOrganisationsByUserId(id));
+        return OrganisationConverter.convertOrganisationCollectionToDTO(organisationService.getOrganisationsByUserId(id));
     }
 }

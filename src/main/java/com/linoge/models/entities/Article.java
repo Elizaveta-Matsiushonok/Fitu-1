@@ -41,7 +41,7 @@ public class Article {
     @Column(name = "date_of_record")
     private String date;
 
-    @OneToMany(mappedBy = "article")
+    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
     private List<Image> images;
 
     @ManyToMany

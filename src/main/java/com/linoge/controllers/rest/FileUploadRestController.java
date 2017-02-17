@@ -1,16 +1,21 @@
 package com.linoge.controllers.rest;
 
+import com.linoge.models.dto.ImageDTO;
+import com.linoge.models.entities.Image;
+import com.linoge.servicies.ImageService;
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import javax.servlet.ServletContext;
 import java.io.IOException;
-import java.util.Iterator;
+import java.io.InputStream;
+import java.util.List;
+
+import static com.linoge.models.converters.ImageConverter.convertImageCollectionToDTO;
 
 /**
  * Created by Timo on 13.02.2017.
@@ -19,24 +24,23 @@ import java.util.Iterator;
 @RequestMapping("/")
 public class FileUploadRestController {
 
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String handleFileUpload(MultipartHttpServletRequest request) {
-        Iterator<String> itr = request.getFileNames();
-        if (itr.hasNext()) {
-            MultipartFile mpf = request.getFile(itr.next());
-            System.out.println(mpf.getOriginalFilename() + " uploaded!");
-            try {
-                BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File("files/" +
-                                mpf.getOriginalFilename())));
-                stream.write(mpf.getBytes());
-                stream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return "<img src='http://localhost:8081/files/" + mpf.getOriginalFilename() + "' />";
-        }
+    @Autowired
+    ImageService imageService;
 
-        return "error";
+    @Autowired
+    ServletContext servletContext;
+
+
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public List<ImageDTO> handleFileUpload(MultipartHttpServletRequest request) {
+        return convertImageCollectionToDTO(imageService.uploadImages(request));
+    }
+
+    @RequestMapping(value = "/getimage", method = RequestMethod.GET)
+    public byte[] testphoto() throws IOException {
+        Image image = imageService.getImageById(16L);
+        InputStream in = servletContext.getResourceAsStream(image.getName());
+        return IOUtils.toByteArray(in);
     }
 }

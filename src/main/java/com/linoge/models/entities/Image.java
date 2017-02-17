@@ -26,6 +26,9 @@ public class Image {
     @Column(name = "path")
     private String path;
 
+    @Column(name = "name")
+    private String name;
+
     @ManyToOne
     @JoinColumn(name = "article_id")
     private Article article;

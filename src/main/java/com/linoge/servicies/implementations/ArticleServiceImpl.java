@@ -1,15 +1,18 @@
 package com.linoge.servicies.implementations;
 
 import com.linoge.dao.ArticleDAO;
+import com.linoge.dao.ImageDAO;
 import com.linoge.models.converters.ArticleConverter;
 import com.linoge.models.converters.SimpleDateConverter;
 import com.linoge.models.dto.ArticleDTO;
 import com.linoge.models.entities.Article;
+import com.linoge.models.shared.FileWorker;
 import com.linoge.servicies.ArticleService;
 import com.linoge.servicies.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +25,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     ArticleDAO articleDAO;
+
+    @Autowired
+    ImageDAO imageDAO;
 
     @Autowired
     TagService tagService;
@@ -55,6 +61,14 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void deleteArticleById(Long id) {
+        Article article = articleDAO.findOne(id);
+        article.getImages().forEach(image -> {
+            try {
+                FileWorker.delete(image.getName());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
         articleDAO.delete(id);
     }
 
@@ -84,5 +98,14 @@ public class ArticleServiceImpl implements ArticleService {
                         .collect(Collectors.toList()))
                 .date(articleDAO.getOne(article.getId()).getDate())
                 .build());
+    }
+
+    @Override
+    public void addImages(List<Long> list, Long articleId) {
+        Article article = articleDAO.getOne(articleId);
+        imageDAO.findAll(list).forEach(image -> {
+            image.setArticle(article);
+            imageDAO.saveAndFlush(image);
+        });
     }
 }

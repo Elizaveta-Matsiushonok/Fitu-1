@@ -15,7 +15,7 @@ public final class OrganisationConverter {
 
     }
 
-    public static List<OrganisationDTO> convertOrganisationConverterToDTO(List<Organisation> organisations) {
+    public static List<OrganisationDTO> convertOrganisationCollectionToDTO(List<Organisation> organisations) {
         return organisations.stream()
                 .map(organisation -> OrganisationDTO.builder()
                         .name(organisation.getName())
