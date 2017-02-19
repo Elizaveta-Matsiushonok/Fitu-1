@@ -23,9 +23,6 @@ public class Image {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "path")
-    private String path;
-
     @Column(name = "name")
     private String name;
 

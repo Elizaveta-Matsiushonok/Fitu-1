@@ -35,6 +35,7 @@ public class Lector {
      * Create and change with CKeditor. Contains information about lector: publishing, photos, etc.
      */
     @Column(name = "information")
+    @Lob
     private String information;
 
     @ManyToOne

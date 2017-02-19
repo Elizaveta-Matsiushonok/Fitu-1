@@ -12,6 +12,9 @@ import static java.util.stream.Collectors.toList;
  */
 public final class ImageConverter {
 
+    private static final String TAG_BEGIN = "<img src=http://localhost:8081/getimage";
+    private static final String TAG_END = ">";
+
     private ImageConverter() {
 
     }
@@ -20,7 +23,7 @@ public final class ImageConverter {
         return images.stream()
                 .map(image -> ImageDTO.builder()
                         .id(image.getId())
-                        .path(image.getPath())
+                        .path(TAG_BEGIN + "?id=" + image.getId() + TAG_END)
                         .build())
                 .collect(toList());
     }

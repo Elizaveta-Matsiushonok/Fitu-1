@@ -17,18 +17,7 @@ import java.util.List;
 @Service
 public final class FileWorker {
 
-    private static final String TAG_BEGIN = "<img src=http://localhost:8081/getimage";
-    private static final String TAG_END = "/>";
-    //    private final String RELATIVE_PATH = "src/main/resources/static/files/";
-//    private static final String TAG_BEGIN = "<img src='http://localhost:8081/files/";
-    private final String RELATIVE_PATH = "src/main/resources/static/";
-    @Autowired
-    ServletContext servletContext;
-    //private static final String TEST = TAG_BEGIN + TAG_END;
-
-    public static String convertNameToPath(String name) {
-        return TAG_BEGIN + TAG_END;
-    }
+    private final String RELATIVE_PATH = "files/";
 
     public static void delete(String nameFile) throws FileNotFoundException {
         exists(nameFile);

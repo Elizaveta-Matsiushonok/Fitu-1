@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
-
-import static com.linoge.models.shared.FileWorker.convertNameToPath;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -30,7 +28,6 @@ public class ImageServiceImpl implements ImageService {
         return imageDAO.save(imageWriter.upload(request).stream()
                 .map(name -> Image.builder()
                         .name(name)
-                        .path(convertNameToPath(name))
                         .build())
                 .collect(toList()));
     }
