@@ -1,10 +1,9 @@
 package com.linoge.controllers.rest;
 
 import com.linoge.models.dto.ImageDTO;
-import com.linoge.models.entities.Image;
 import com.linoge.servicies.ImageService;
-import javassist.bytecode.ByteArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +37,7 @@ public class FileUploadRestController {
         return convertImageCollectionToDTO(imageService.uploadImages(request));
     }
 
+    @Cacheable("photos")
     @RequestMapping(value = "/getimage", method = RequestMethod.GET)
     public byte[] getImage(@RequestParam("id") Long id) throws IOException {
         InputStream in = new FileInputStream(RELATIVE_PATH +
