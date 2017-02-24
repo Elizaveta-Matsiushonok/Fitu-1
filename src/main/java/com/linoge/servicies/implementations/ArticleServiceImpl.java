@@ -10,12 +10,18 @@ import com.linoge.models.shared.FileWorker;
 import com.linoge.servicies.ArticleService;
 import com.linoge.servicies.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by Timo on 28.12.2016.
@@ -23,20 +29,26 @@ import java.util.stream.Collectors;
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
+    private static final int ARTICLE_COUNT = 10;
     @Autowired
     ArticleDAO articleDAO;
-
     @Autowired
     ImageDAO imageDAO;
-
     @Autowired
     TagService tagService;
+    private Comparator<Article> byDate = Collections.reverseOrder(Comparator.comparing(Article::getDate));
 
+    @Override
+    @Cacheable("articles")
     public List<Article> getArticles() {
         return articleDAO.findAll();
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "articles", allEntries = true),
+            @CacheEvict(value = "articles_pages", allEntries = true)
+    })
     public Long createArticle(String text, String title, List<Long> tagsId) {
         return articleDAO.saveAndFlush(Article.builder()
                 .header(ArticleConverter.getHeader(text))
@@ -44,7 +56,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .title(title)
                 .tags(tagsId.stream()
                         .map(tag -> tagService.findTagById(tag))
-                        .collect(Collectors.toList()))
+                        .collect(toList()))
                 .date(SimpleDateConverter.getSimpleFormatDate(new Date())).build())
                 .getId();
     }
@@ -60,6 +72,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "articles", allEntries = true),
+            @CacheEvict(value = "articles_pages", allEntries = true)
+    })
     public void deleteArticleById(Long id) {
         Article article = articleDAO.findOne(id);
         article.getImages().forEach(image -> {
@@ -80,13 +96,17 @@ public class ArticleServiceImpl implements ArticleService {
                 .title(article.getTitle())
                 .tags(article.getTags().stream()
                         .map(tagDTO -> tagService.findTagById(tagDTO.getId()))
-                        .collect(Collectors.toList()))
+                        .collect(toList()))
                 .date(SimpleDateConverter.getSimpleFormatDate(new Date()))
                 .build())
                 .getId();
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "articles", allEntries = true),
+            @CacheEvict(value = "articles_pages", allEntries = true)
+    })
     public void updateArticle(ArticleDTO article) {
         articleDAO.saveAndFlush(Article.builder()
                 .id(article.getId())
@@ -95,7 +115,7 @@ public class ArticleServiceImpl implements ArticleService {
                 .title(article.getTitle())
                 .tags(article.getTags().stream()
                         .map(tagDTO -> tagService.findTagById(tagDTO.getId()))
-                        .collect(Collectors.toList()))
+                        .collect(toList()))
                 .date(articleDAO.getOne(article.getId()).getDate())
                 .build());
     }
@@ -107,5 +127,15 @@ public class ArticleServiceImpl implements ArticleService {
             image.setArticle(article);
             imageDAO.saveAndFlush(image);
         });
+    }
+
+    @Override
+    @Cacheable(value = "articles_pages", key = "#number")
+    public List<Article> getArticlesByPage(Long number) {
+        return getArticles().stream()
+                .sorted(byDate)
+                .skip((number - 1) * ARTICLE_COUNT)
+                .limit(number * ARTICLE_COUNT)
+                .collect(toList());
     }
 }

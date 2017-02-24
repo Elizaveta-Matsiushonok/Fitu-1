@@ -27,6 +27,7 @@ import static org.apache.commons.io.IOUtils.toByteArray;
 public class FileUploadRestController {
 
     private static final String RELATIVE_PATH = "files/";
+
     @Autowired
     ImageService imageService;
     @Autowired
@@ -37,7 +38,7 @@ public class FileUploadRestController {
         return convertImageCollectionToDTO(imageService.uploadImages(request));
     }
 
-    @Cacheable("photos")
+    @Cacheable(value = "images", key = "#id")
     @RequestMapping(value = "/getimage", method = RequestMethod.GET)
     public byte[] getImage(@RequestParam("id") Long id) throws IOException {
         InputStream in = new FileInputStream(RELATIVE_PATH +

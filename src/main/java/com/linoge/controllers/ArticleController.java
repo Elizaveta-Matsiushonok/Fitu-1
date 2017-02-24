@@ -42,9 +42,15 @@ public class ArticleController {
         return articleService.getArticleById(id);
     }
 
+//    @ModelAttribute("articles")
+//    @RequestMapping("/articles")
+//    public List<ArticleDTO> articles(){
+//        return ArticleConverter.convertArticleCollectionToDTO(articleService.getArticles());
+//    }
+
     @ModelAttribute("articles")
     @RequestMapping("/articles")
-    public List<ArticleDTO> articles(){
-        return ArticleConverter.convertArticleCollectionToDTO(articleService.getArticles());
+    public List<ArticleDTO> articlesByPage(@RequestParam("number") Long number) {
+        return ArticleConverter.convertArticleCollectionToDTO(articleService.getArticlesByPage(number));
     }
 }

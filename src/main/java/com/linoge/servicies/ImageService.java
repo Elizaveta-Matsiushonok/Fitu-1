@@ -11,5 +11,5 @@ import java.util.List;
 public interface ImageService {
     List<Image> uploadImages(MultipartHttpServletRequest request);
 
-    Image getImageById(Long i);
+    Image getImageById(Long id);
 }

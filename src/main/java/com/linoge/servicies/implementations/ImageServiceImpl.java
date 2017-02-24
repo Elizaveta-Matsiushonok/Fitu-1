@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
+
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -33,8 +34,8 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public Image getImageById(Long i) {
-        return imageDAO.getOne(i);
+    public Image getImageById(Long id) {
+        return imageDAO.getOne(id);
     }
 
 

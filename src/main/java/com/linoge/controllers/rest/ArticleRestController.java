@@ -25,6 +25,11 @@ public class ArticleRestController {
         return convertArticleCollectionToDTO(articleService.getArticles());
     }
 
+    @RequestMapping(path = "getarticlesbypage", method = RequestMethod.GET)
+    public List<ArticleDTO> getArticleByPage(@RequestParam("number") Long number) {
+        return convertArticleCollectionToDTO(articleService.getArticlesByPage(number));
+    }
+
     @RequestMapping(path = "/getarticlebytag", method = RequestMethod.GET)
     public List<ArticleDTO> getArticleByTag(@RequestParam("id") Long tagId) {
         return convertArticleCollectionToDTO(articleService.getArticleByTag(tagId));
