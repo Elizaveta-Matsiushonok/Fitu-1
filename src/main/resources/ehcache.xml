@@ -5,12 +5,13 @@
 
     <cache
             name="departments"
-            maxElementsInMemory="5"
+            maxElementsInMemory="1"
             eternal="false"
             timeToIdleSeconds="0"
             timeToLiveSeconds="0"
             overflowToDisk="false"
             memoryStoreEvictionPolicy="LRU"
+            statistics="true"
     />
     <cache
             name="articles"
@@ -20,6 +21,7 @@
             timeToLiveSeconds="0"
             overflowToDisk="false"
             memoryStoreEvictionPolicy="LRU"
+            statistics="true"
     />
     <cache
             name="articles_pages"
@@ -29,6 +31,7 @@
             timeToLiveSeconds="0"
             overflowToDisk="false"
             memoryStoreEvictionPolicy="LRU"
+            statistics="true"
     />
     <cache
             name="images"
@@ -38,5 +41,6 @@
             timeToLiveSeconds="0"
             overflowToDisk="false"
             memoryStoreEvictionPolicy="LRU"
+            statistics="true"
     />
 </ehcache>
