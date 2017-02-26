@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class Job {
+public final class Job {
     private String organisation;
     private String position;
     private String dateBegin;

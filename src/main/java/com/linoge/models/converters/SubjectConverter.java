@@ -19,7 +19,7 @@ public final class SubjectConverter {
         return subjects.stream()
                 .map(subject -> SubjectDTO.builder()
                         .id(subject.getId())
-                        .description(subject.getDescription())
+                        .name(subject.getName())
                         .build())
                 .collect(toList());
     }
@@ -27,7 +27,7 @@ public final class SubjectConverter {
     public static SubjectDTO convertSubjectToDTO(Subject subject) {
         return SubjectDTO.builder()
                 .id(subject.getId())
-                .description(subject.getDescription())
+                .name(subject.getName())
                 .information(subject.getInformation())
                 .lectors(convertLectorCollectionToDTO(subject.getLectors()))
                 .build();

@@ -4,7 +4,7 @@ import com.linoge.models.dto.StudentDTO;
 import com.linoge.models.entities.Student;
 
 import static com.linoge.models.converters.FullNameConverter.convertFullNameToString;
-import static com.linoge.models.converters.OrganisationConverter.convertOrganisationConverterToDTO;
+import static com.linoge.models.converters.OrganisationConverter.convertOrganisationCollectionToDTO;
 
 /**
  * Created by Timo on 30.01.2017.
@@ -25,7 +25,7 @@ public final class StudentConverter {
                 .id(student.getId())
                 .fullName(convertFullNameToString(student.getFullName()))
                 .groupNumber(student.getGroup().getGroupId())
-                .organisations(convertOrganisationConverterToDTO(student.getOrganisation()))
+                .organisations(convertOrganisationCollectionToDTO(student.getOrganisation()))
                 .build();
     }
 }

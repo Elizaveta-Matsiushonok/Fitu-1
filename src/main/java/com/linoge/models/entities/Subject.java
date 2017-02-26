@@ -24,8 +24,8 @@ public class Subject {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "name")
+    private String name;
 
     /**
      * Create and change with simple TextArea. Contains information about subject and link on GoogleDrive.

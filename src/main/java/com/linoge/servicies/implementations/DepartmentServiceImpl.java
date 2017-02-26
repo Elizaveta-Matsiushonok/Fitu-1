@@ -6,6 +6,8 @@ import com.linoge.models.entities.Department;
 import com.linoge.models.entities.Lector;
 import com.linoge.servicies.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +24,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     LectorDAO lectorDAO;
 
     @Override
+    @Cacheable("departments")
     public List<Department> getAllDepartments() {
         return departmentDAO.findAll();
     }
@@ -32,9 +35,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    @CacheEvict(value = "departments", allEntries = true)
     public void createDepartment(String description) {
         departmentDAO.saveAndFlush(Department.builder()
-                .description(description)
+                .name(description)
                 .build());
     }
 
@@ -57,6 +61,4 @@ public class DepartmentServiceImpl implements DepartmentService {
             lectorDAO.saveAndFlush(lector);
         });
     }
-
-
 }

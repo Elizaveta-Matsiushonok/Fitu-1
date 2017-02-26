@@ -6,12 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Created by Timo on 30.01.2017.
+ * Created by Timo on 17.02.2017.
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrganisationDTO {
-    public String name;
+public class ImageDTO {
+
+    public Long id;
+    public String path;
 }

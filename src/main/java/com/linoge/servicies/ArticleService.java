@@ -23,4 +23,8 @@ public interface ArticleService {
     Long createArticleFromDTO(ArticleDTO article);
 
     void updateArticle(ArticleDTO article);
+
+    void addImages(List<Long> list, Long articleId);
+
+    List<Article> getArticlesByPage(Long number);
 }

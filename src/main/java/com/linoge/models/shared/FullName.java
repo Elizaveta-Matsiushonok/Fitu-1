@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class FullName {
+public final class FullName {
     private String surName;
     private String firstName;
     private String patronymic;

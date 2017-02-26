@@ -30,16 +30,22 @@ public class Article {
      */
 
     @Column(name = "title", nullable = false)
+    @Lob
     private String title;
 
     @Column(name = "header", nullable = false)
+    @Lob
     private String header;
 
     @Column(name = "body", nullable = false)
+    @Lob
     private String body;
 
     @Column(name = "date_of_record")
     private String date;
+
+    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
+    private List<Image> images;
 
     @ManyToMany
     @JoinTable(

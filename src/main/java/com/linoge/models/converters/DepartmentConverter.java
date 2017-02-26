@@ -19,7 +19,7 @@ public final class DepartmentConverter {
         return departments.stream()
                 .map(department -> DepartmentDTO.builder()
                         .id(department.getId())
-                        .description(department.getDescription())
+                        .name(department.getName())
                         .lectors(convertLectorCollectionToDTO(department.getLectors()))
                         .build())
                 .collect(toList());
@@ -28,7 +28,7 @@ public final class DepartmentConverter {
     public static DepartmentDTO convertDepartmentToDTO(Department department) {
         return DepartmentDTO.builder()
                 .id(department.getId())
-                .description(department.getDescription())
+                .name(department.getName())
                 .lectors(convertLectorCollectionToDTO(department.getLectors()))
                 .build();
     }
