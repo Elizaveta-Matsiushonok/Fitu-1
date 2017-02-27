@@ -26,5 +26,5 @@ public interface ArticleService {
 
     void addImages(List<Long> list, Long articleId);
 
-    List<Article> getArticlesByPage(Long number);
+    List<Article> getArticlesByPage(Integer number);
 }

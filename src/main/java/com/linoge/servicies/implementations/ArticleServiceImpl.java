@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -29,14 +29,16 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
-    private static final int ARTICLE_COUNT = 10;
+    private static final int ARTICLE_COUNT_ON_PAGE = 10;
+    private static final String SORTING_FIELD = "date";
+
     @Autowired
     ArticleDAO articleDAO;
     @Autowired
     ImageDAO imageDAO;
     @Autowired
     TagService tagService;
-    private Comparator<Article> byDate = Collections.reverseOrder(Comparator.comparing(Article::getDate));
+
 
     @Override
     @Cacheable("articles")
@@ -49,6 +51,7 @@ public class ArticleServiceImpl implements ArticleService {
             @CacheEvict(value = "articles", allEntries = true),
             @CacheEvict(value = "articles_pages", allEntries = true)
     })
+    @CacheEvict(value = "articles", allEntries = true)
     public Long createArticle(String text, String title, List<Long> tagsId) {
         return articleDAO.saveAndFlush(Article.builder()
                 .header(ArticleConverter.getHeader(text))
@@ -89,6 +92,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "articles", allEntries = true),
+            @CacheEvict(value = "articles_pages", allEntries = true)
+    })
     public Long createArticleFromDTO(ArticleDTO article) {
         return articleDAO.saveAndFlush(Article.builder()
                 .body(article.getBody())
@@ -131,11 +138,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Cacheable(value = "articles_pages", key = "#number")
-    public List<Article> getArticlesByPage(Long number) {
-        return getArticles().stream()
-                .sorted(byDate)
-                .skip((number - 1) * ARTICLE_COUNT)
-                .limit(number * ARTICLE_COUNT)
-                .collect(toList());
+    public List<Article> getArticlesByPage(Integer number) {
+        int count = (((int) articleDAO.count() - 1) / ARTICLE_COUNT_ON_PAGE);
+        return articleDAO.findAll(new PageRequest(count - number, ARTICLE_COUNT_ON_PAGE,
+                Sort.Direction.DESC, SORTING_FIELD)).getContent();
     }
 }

@@ -24,21 +24,21 @@ public class ArticleController {
     ArticleService articleService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(@RequestParam(value="name", required=false, defaultValue="World")
-                                       String name, Model model) {
+    public String home(@RequestParam(value = "name", required = false, defaultValue = "World")
+                               String name, Model model) {
         model.addAttribute("name", name);
         return "index";
     }
 
     @RequestMapping(value = "/articlecreator", method = RequestMethod.GET)
-    public String articleCreator(){
+    public String articleCreator() {
         return "articlecreator";
     }
 
     @ModelAttribute("article")
     @RequestMapping(value = "/article", method = RequestMethod.GET)
     public Article article(@RequestParam(value = "id", required = false, defaultValue = "1")
-                          Long id){
+                                   Long id) {
         return articleService.getArticleById(id);
     }
 
@@ -50,7 +50,7 @@ public class ArticleController {
 
     @ModelAttribute("articles")
     @RequestMapping("/articles")
-    public List<ArticleDTO> articlesByPage(@RequestParam("number") Long number) {
+    public List<ArticleDTO> articlesByPage(@RequestParam("number") Integer number) {
         return ArticleConverter.convertArticleCollectionToDTO(articleService.getArticlesByPage(number));
     }
 }

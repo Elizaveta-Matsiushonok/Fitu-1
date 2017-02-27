@@ -26,7 +26,7 @@ public class ArticleRestController {
     }
 
     @RequestMapping(path = "getarticlesbypage", method = RequestMethod.GET)
-    public List<ArticleDTO> getArticleByPage(@RequestParam("number") Long number) {
+    public List<ArticleDTO> getArticleByPage(@RequestParam("number") Integer number) {
         return convertArticleCollectionToDTO(articleService.getArticlesByPage(number));
     }
 
