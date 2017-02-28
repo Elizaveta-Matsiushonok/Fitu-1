@@ -22,11 +22,11 @@ function uploadFormData(elem) {
         type: 'POST',
         success: function (data) {
 
-            $("#imageList").append('<div class="row">'+
+            $("#imageList").append('<div class="row"><div id="fileRow' + currentNum + '">'+
                 '<form id="form' + currentNum + '" method="POST" enctype="multipart/form-data" action="/upload" class="col-xs-6 col-sm-3 col-lg-3">' +
                 '<input type="file" multiple="multiple" name="file' + currentNum +'[]" id="file' + currentNum +'"/>' +
                 '</form> <button  id ="uploadBtn' +  currentNum +'" value="Submit" onclick="uploadFormData(this)" style="width: 55px" class="col-xs-6 col-sm-3 col-lg-3">Upload</button>' +
-                '<button id="clearBtn' + currentNum +' " value="Submit" onclick="deleteImage(this)" style="margin-left: 10px; width: 50px" class="col-xs-6 col-sm-3 col-lg-3">Clear</button></div>');
+                '<button id="clearBtn' + currentNum +'" value="Submit" onclick="deleteImage(this)" style="margin-left: 10px; width: 50px" class="col-xs-6 col-sm-3 col-lg-3">Clear</button></div></div>');
         }
     });
 }
@@ -34,7 +34,7 @@ function uploadFormData(elem) {
 function deleteImage(elem) {
     var currentId = $(elem).attr("id");
     var currentNum = currentId.slice(-1);
-    console.log(currentId);
-    console.log(currentNum);
-    $('#file' + currentNum).val('');
+    if(currentNum > 0) {
+        $('#fileRow' + currentNum).hide();
+    }
 }

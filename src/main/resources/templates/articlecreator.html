@@ -42,8 +42,9 @@
     <div id="btnList" style="margin-left: 13%; margin-top: 60px;">
 
     </div>
-    <div id="imageList" style="margin-left: 13%;" >
+    <div id="imageList" style="margin-left: 13%; margin-top: 2%;" >
         <div class="row">
+            <div id="fileRow0">
         <form id="form0" method="POST" enctype="multipart/form-data" action="/upload" class="col-xs-6 col-sm-3 col-lg-3" >
             <input type="file" multiple="multiple" name="file0[]" id="file0" />
         </form>
@@ -51,14 +52,15 @@
         <button id="clearBtn0" value="Submit" onclick="deleteImage(this)" class="col-xs-6 col-sm-3 col-lg-3" style="margin-left: 10px; width: 50px">Clear</button>
         </div>
     </div>
+    </div>
     </p>
     <p>
-    <div style="margin-left: 13%; margin-top: 5%;">
+    <div style="margin-left: 13%; margin-top: 2%;">
         <form>
             <textarea name="editor1" id="editor1" cols="50%" rows="10">
                 This is my textarea to be replaced with CKEditor.
             </textarea>
-            <script>CKEDITOR.replace( 'editor1' );</script>
+            <script>CKEDITOR.replace( 'editor1');</script>
         </form>
     </div>
     </p>
