@@ -31,6 +31,9 @@ public class Student {
     @Convert(converter = FullNameConverter.class)
     private FullName fullName;
 
+    @Column(name = "order_of_admission")
+    private String admissionOrder;
+
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;

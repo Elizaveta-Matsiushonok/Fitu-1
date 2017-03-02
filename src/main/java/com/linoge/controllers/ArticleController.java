@@ -23,12 +23,12 @@ public class ArticleController {
     @Autowired
     ArticleService articleService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(@RequestParam(value = "name", required = false, defaultValue = "World")
-                               String name, Model model) {
-        model.addAttribute("name", name);
-        return "index";
-    }
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public String home(@RequestParam(value = "name", required = false, defaultValue = "World")
+//                               String name, Model model) {
+//        model.addAttribute("name", name);
+//        return "index";
+//    }
 
     @RequestMapping(value = "/articlecreator", method = RequestMethod.GET)
     public String articleCreator() {
