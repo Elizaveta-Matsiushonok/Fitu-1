@@ -3,6 +3,9 @@ package com.linoge.models.entities;
 
 
 import com.linoge.models.converters.FullNameConverter;
+import com.linoge.models.enums.EducationBasis;
+import com.linoge.models.enums.EducationNumber;
+import com.linoge.models.enums.EducationTime;
 import com.linoge.models.shared.FullName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,8 +34,21 @@ public class Student {
     @Convert(converter = FullNameConverter.class)
     private FullName fullName;
 
-    @Column(name = "order_of_admission")
-    private String admissionOrder;
+    @Column(name = "education_basis")
+    @Enumerated(EnumType.ORDINAL)
+    EducationBasis basis;
+
+    @Column(name = "education_number")
+    @Enumerated(EnumType.ORDINAL)
+    EducationNumber number;
+
+    @Column(name = "education_time")
+    @Enumerated(EnumType.ORDINAL)
+    EducationTime time;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private AdmissionOrder admissionOrder;
 
     @ManyToOne
     @JoinColumn(name = "group_id")

@@ -1,5 +1,6 @@
 package com.linoge.models.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,4 +20,13 @@ public class StudentDTO {
     public String fullName;
     public String groupNumber;
     public List<OrganisationDTO> organisations;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String basis;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String number;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String time;
 }
