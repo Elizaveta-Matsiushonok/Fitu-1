@@ -1,0 +1,24 @@
+.banner {
+    padding: 100px 0;
+    color: #f8f8f8;
+    background: url(../images/banner-bg.jpg) no-repeat center center;
+    background-size: cover;
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    text-align: center;
+}
+
+.banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 3em;
+    color: inherit;
+}
+
+.banner ul {
+    margin-bottom: 0;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+}
