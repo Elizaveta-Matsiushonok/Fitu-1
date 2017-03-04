@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+
+    <defaultCache maxElementsInMemory="100" eternal="false" timeToIdleSeconds="120" timeToLiveSeconds="200"/>
+
+    <cache
+            name="departments"
+            maxElementsInMemory="1"
+            eternal="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="0"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LRU"
+            statistics="true"
+    />
+    <cache
+            name="articles"
+            maxElementsInMemory="1"
+            eternal="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="0"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LRU"
+            statistics="true"
+    />
+    <cache
+            name="articles_pages"
+            maxElementsInMemory="10"
+            eternal="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="0"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LRU"
+            statistics="true"
+    />
+    <cache
+            name="images"
+            maxElementsInMemory="500"
+            eternal="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="0"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LRU"
+            statistics="true"
+    />
+</ehcache>

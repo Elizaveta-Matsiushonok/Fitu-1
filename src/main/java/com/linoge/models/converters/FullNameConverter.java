@@ -4,10 +4,12 @@ import com.linoge.models.shared.FullName;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by Timo on 11.01.2017.
@@ -16,12 +18,18 @@ import java.util.stream.Collectors;
 @Converter
 public final class FullNameConverter implements AttributeConverter<FullName, String> {
 
-    private final String SEPARATOR = "|";
-    private final int SURNAME_INDEX = 0;
-    private final int FIRSTNAME_INDEX = 1;
-    private final int PATRONYMIC_INDEX = 2;
+    private static final String SPACE = " ";
+    private static final String SEPARATOR = "|";
+    private static final int SURNAME_INDEX = 0;
+    private static final int FIRSTNAME_INDEX = 1;
+    private static final int PATRONYMIC_INDEX = 2;
 
-    public FullNameConverter() {
+    public static String convertFullNameToString(FullName fullName) {
+        return fullName.getSurName() + SPACE + fullName.getFirstName() + SPACE + fullName.getPatronymic();
+    }
+
+    public static FullName convertStringToFullName(String fullNameWithSpaces){
+        return toFullName(Arrays.stream(fullNameWithSpaces.split(SPACE)).collect(toList()));
     }
 
     @Override
@@ -32,12 +40,12 @@ public final class FullNameConverter implements AttributeConverter<FullName, Str
     @Override
     public FullName convertToEntityAttribute(String fullNameWithSeparator) {
         return toFullName(Arrays.stream(fullNameWithSeparator.split(Pattern.quote(SEPARATOR)))
-                .collect(Collectors.toList()));
+                .collect(toList()));
 
 
     }
 
-    private FullName toFullName(List<String> fullNameData) {
+    private static FullName toFullName(List<String> fullNameData) {
         return FullName.builder()
                 .surName(fullNameData.get(SURNAME_INDEX))
                 .firstName(fullNameData.get(FIRSTNAME_INDEX))

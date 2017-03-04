@@ -1,6 +1,7 @@
 package com.linoge.models.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,12 +18,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ArticleDTO {
-
     public Long id;
-
     public String title;
-
     public String header;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String body;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String date;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<TagDTO> tags;
 }

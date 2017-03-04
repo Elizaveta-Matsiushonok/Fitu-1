@@ -1,5 +1,6 @@
 package com.linoge.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.linoge.models.converters.RoleConverter;
 import com.linoge.models.enums.Role;
 import lombok.AllArgsConstructor;

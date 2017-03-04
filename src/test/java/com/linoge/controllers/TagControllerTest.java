@@ -1,6 +1,7 @@
 package com.linoge.controllers;
 
 import com.google.common.collect.ImmutableList;
+import com.linoge.controllers.rest.ArticleRestController;
 import com.linoge.models.dto.ArticleDTO;
 import com.linoge.servicies.ArticleService;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class TagControllerTest {
     private ArticleService articleService;
 
     @InjectMocks
-    ArticleController sut;
+    ArticleRestController sut;
 
     @Test
     public void getTags() throws Exception {

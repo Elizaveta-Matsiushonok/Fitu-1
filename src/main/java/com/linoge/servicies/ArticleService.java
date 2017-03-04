@@ -1,5 +1,6 @@
 package com.linoge.servicies;
 
+import com.linoge.models.dto.ArticleDTO;
 import com.linoge.models.entities.Article;
 
 import java.util.List;
@@ -18,4 +19,12 @@ public interface ArticleService {
     Article getArticleById(Long articleId);
 
     void deleteArticleById(Long id);
+
+    Long createArticleFromDTO(ArticleDTO article);
+
+    void updateArticle(ArticleDTO article);
+
+    void addImages(List<Long> list, Long articleId);
+
+    List<Article> getArticlesByPage(Integer number);
 }

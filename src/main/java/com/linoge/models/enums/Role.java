@@ -9,6 +9,7 @@ import javax.persistence.Entity;
  */
 public enum Role implements GrantedAuthority {
     ROLE_USER,
+    ROLE_STUDENT,
     ROLE_ADMIN;
 
     @Override
