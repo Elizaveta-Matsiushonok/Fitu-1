@@ -109,7 +109,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 #fitu-header #navbar li.search input{
   height: 23px;
-    background:white url(http://litigation.maxval-ip.com/images/search-icon.png) right center no-repeat;
 }
 #fitu-header #navbar li.call-to-action a:hover { 
   background-color: rgb(255, 59, 48); 
