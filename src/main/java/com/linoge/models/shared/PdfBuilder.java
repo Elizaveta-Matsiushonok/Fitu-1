@@ -18,14 +18,15 @@ import java.io.FileOutputStream;
  * Created by Timo on 02.03.2017.
  */
 public final class PdfBuilder {
-    private PdfBuilder(){
-
-    }
-
     private static final String FONT = "src/main/resources/fonts/FreeSans.ttf";
     private static final String OUTPUT_FILE_NAME = "output.pdf";
     private static final String PATH_TO_PDF_FILES = "pdf/";
     private static final String FILE_FORMAT = ".pdf";
+    private static final float FONT_SIZE = 14;
+
+    private PdfBuilder() {
+
+    }
 
     private static String createFileName(){
         return PATH_TO_PDF_FILES + "filename" + FILE_FORMAT;
@@ -37,7 +38,7 @@ public final class PdfBuilder {
                         FONT,
                         BaseFont.IDENTITY_H,
                         BaseFont.EMBEDDED);
-        return new Font(sans, 14);
+        return new Font(sans, FONT_SIZE);
     }
 
     private static void createContent(Document document) throws Exception{
@@ -51,17 +52,21 @@ public final class PdfBuilder {
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
 
         PdfWriter.getInstance(document, fileOutputStream);
+
         document.open();
         createContent(document);
         document.close();
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType("application/pdf"));
-
-        headers.setContentDispositionFormData(OUTPUT_FILE_NAME, OUTPUT_FILE_NAME);
-        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+        setHeaders(headers);
 
         File temp = new File(fileName);
         return new ResponseEntity<>(FileUtils.readFileToByteArray(temp), headers, HttpStatus.OK);
+    }
+
+    private static void setHeaders(HttpHeaders headers) {
+        headers.setContentType(MediaType.parseMediaType("application/pdf"));
+        headers.setContentDispositionFormData(OUTPUT_FILE_NAME, OUTPUT_FILE_NAME);
+        headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
     }
 }

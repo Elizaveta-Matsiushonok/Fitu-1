@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static com.linoge.models.converters.ArticleConverter.convertArticleCollectionToDTO;
+import static com.linoge.models.converters.ArticleConverter.convertArticleToDTO;
 
 /**
  * Created by Timo on 28.12.2016.
@@ -25,9 +26,14 @@ public class ArticleRestController {
         return convertArticleCollectionToDTO(articleService.getArticles());
     }
 
-    @RequestMapping(path = "getarticlesbypage", method = RequestMethod.GET)
+    @RequestMapping(path = "/getarticlesbypage", method = RequestMethod.GET)
     public List<ArticleDTO> getArticleByPage(@RequestParam("number") Integer number) {
         return convertArticleCollectionToDTO(articleService.getArticlesByPage(number));
+    }
+
+    @RequestMapping(path = "/getarticlebyid", method = RequestMethod.GET)
+    public ArticleDTO getArticleById(@RequestParam("id") Long id) {
+        return convertArticleToDTO(articleService.getArticleById(id));
     }
 
     @RequestMapping(path = "/getarticlebytag", method = RequestMethod.GET)
@@ -50,7 +56,7 @@ public class ArticleRestController {
     @RequestMapping(path = "/changearticle", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void changeArticle(@RequestBody ArticleDTO article){
+    public void changeArticle(@RequestBody ArticleDTO article) {
         articleService.updateArticle(article);
     }
 

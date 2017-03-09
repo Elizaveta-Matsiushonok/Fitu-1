@@ -13,8 +13,6 @@ import static java.util.stream.Collectors.toList;
  */
 public final class ArticleConverter {
 
-    private final static String BODY_TAG = "{<article_body>}";
-
     private ArticleConverter() {
     }
 
@@ -23,6 +21,7 @@ public final class ArticleConverter {
                 .id(article.getId())
                 .title(article.getTitle())
                 .header(article.getHeader())
+                .body(article.getBody())
                 .tags(convertTagsCollectionToDTO(article.getTags()))
                 .build();
     }
@@ -37,14 +36,4 @@ public final class ArticleConverter {
                         .build())
                 .collect(toList());
     }
-
-    public static String getHeader(String text) {
-        return text.substring(0, text.indexOf(BODY_TAG));
-    }
-
-    public static String getBody(String text) {
-        return text.substring(text.indexOf(BODY_TAG) + BODY_TAG.length());
-    }
-
-
 }

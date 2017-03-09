@@ -2,7 +2,6 @@ package com.linoge.servicies.implementations;
 
 import com.linoge.dao.ArticleDAO;
 import com.linoge.dao.ImageDAO;
-import com.linoge.models.converters.ArticleConverter;
 import com.linoge.models.converters.SimpleDateConverter;
 import com.linoge.models.dto.ArticleDTO;
 import com.linoge.models.entities.Article;
@@ -44,24 +43,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Cacheable("articles")
     public List<Article> getArticles() {
         return articleDAO.findAll();
-    }
-
-    @Override
-    @Caching(evict = {
-            @CacheEvict(value = "articles", allEntries = true),
-            @CacheEvict(value = "articles_pages", allEntries = true)
-    })
-    @CacheEvict(value = "articles", allEntries = true)
-    public Long createArticle(String text, String title, List<Long> tagsId) {
-        return articleDAO.saveAndFlush(Article.builder()
-                .header(ArticleConverter.getHeader(text))
-                .body(ArticleConverter.getBody(text))
-                .title(title)
-                .tags(tagsId.stream()
-                        .map(tag -> tagService.findTagById(tag))
-                        .collect(toList()))
-                .date(SimpleDateConverter.getSimpleFormatDate(new Date())).build())
-                .getId();
     }
 
     @Override
