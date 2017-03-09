@@ -22,7 +22,5 @@ public interface ArticleService {
 
     void updateArticle(ArticleDTO article);
 
-    void addImages(List<Long> list, Long articleId);
-
     List<Article> getArticlesByPage(Integer number);
 }

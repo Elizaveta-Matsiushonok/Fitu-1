@@ -78,7 +78,7 @@ public class ArticleServiceImpl implements ArticleService {
             @CacheEvict(value = "articles_pages", allEntries = true)
     })
     public Long createArticleFromDTO(ArticleDTO article) {
-        return articleDAO.saveAndFlush(Article.builder()
+        Long result = articleDAO.saveAndFlush(Article.builder()
                 .body(article.getBody())
                 .header(article.getHeader())
                 .title(article.getTitle())
@@ -88,6 +88,9 @@ public class ArticleServiceImpl implements ArticleService {
                 .date(SimpleDateConverter.getSimpleFormatDate(new Date()))
                 .build())
                 .getId();
+        addImages(article.getImageId(), result);
+        return result;
+
     }
 
     @Override
@@ -96,7 +99,7 @@ public class ArticleServiceImpl implements ArticleService {
             @CacheEvict(value = "articles_pages", allEntries = true)
     })
     public void updateArticle(ArticleDTO article) {
-        articleDAO.saveAndFlush(Article.builder()
+        Long result = articleDAO.saveAndFlush(Article.builder()
                 .id(article.getId())
                 .body(article.getBody())
                 .header(article.getHeader())
@@ -105,13 +108,14 @@ public class ArticleServiceImpl implements ArticleService {
                         .map(tagDTO -> tagService.findTagById(tagDTO.getId()))
                         .collect(toList()))
                 .date(articleDAO.getOne(article.getId()).getDate())
-                .build());
+                .build())
+                .getId();
+        addImages(article.getImageId(), result);
     }
 
-    @Override
-    public void addImages(List<Long> list, Long articleId) {
+    private void addImages(List<Long> images, Long articleId) {
         Article article = articleDAO.getOne(articleId);
-        imageDAO.findAll(list).forEach(image -> {
+        imageDAO.findAll(images).forEach(image -> {
             image.setArticle(article);
             imageDAO.saveAndFlush(image);
         });
