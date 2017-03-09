@@ -10,30 +10,8 @@
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<header id="fitu-header">
-		<div class="head">
-			<nav class="navbar navbar-default">
-				<div class="navbar-header">
-					<a href="#" class="js-fitu-nav-toggle fitu-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.html" data-nav-section="main"><span >Главная</span></a></li>
-						<li><a href="faculty.html" data-nav-section="help"><span>Факультет</span></a></li>
-						<li><a href="news.html" data-nav-section="news"><span>Новости</span></a></li>
-						<li><a href="achievements.html" data-nav-section="achievments"><span>Достижения</span></a></li>
-						<li><a href="abiturient.html" data-nav-section="enrollee"><span>Абитуриентам</span></a></li>
-						<li><a href="help.html" data-nav-section="help"><span>Помощь</span></a></li>
-						<li class="search"><a href="#" data-nav-section="help">
-							<input type="text" class="form-control" aria-label="..." placeholder="Поиск..">
-						</a></li>
-						<li><a href="#"><span>Войти</span></a></li>
-					</ul>
-				</div>
-			</nav>
-	  </div>
-	</header>
+<header id="fitu-header" th:replace="fragments/header::header">
+</header>
 	<section id="faculty-members">
 	<div class="container-fluid">
 	<h2>Состав факультета</h2>
