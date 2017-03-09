@@ -60,9 +60,4 @@ public class ArticleRestController {
         articleService.updateArticle(article);
     }
 
-    @RequestMapping(path = "/addimages", method = RequestMethod.POST)
-    public void addImages(@RequestParam("list") List<Long> list,
-                          @RequestParam("id") Long articleId) {
-        articleService.addImages(list, articleId);
-    }
 }

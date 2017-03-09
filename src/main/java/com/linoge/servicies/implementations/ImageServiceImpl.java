@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
 
+import static com.linoge.models.shared.FileWorker.nameToHashCodeInString;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -17,18 +18,18 @@ import static java.util.stream.Collectors.toList;
  */
 @Service
 public class ImageServiceImpl implements ImageService {
+
     @Autowired
     ImageDAO imageDAO;
 
     @Autowired
     FileWorker imageWriter;
 
-
     @Override
     public List<Image> uploadImages(MultipartHttpServletRequest request) {
         return imageDAO.save(imageWriter.upload(request).stream()
                 .map(name -> Image.builder()
-                        .name(name)
+                        .name(nameToHashCodeInString(name))
                         .build())
                 .collect(toList()));
     }
@@ -37,6 +38,4 @@ public class ImageServiceImpl implements ImageService {
     public Image getImageById(Long id) {
         return imageDAO.getOne(id);
     }
-
-
 }

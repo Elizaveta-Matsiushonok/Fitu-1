@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import java.util.List;
 
 /**
@@ -30,4 +29,7 @@ public class ArticleDTO {
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<TagDTO> tags;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    public List<Long> imageId;
 }

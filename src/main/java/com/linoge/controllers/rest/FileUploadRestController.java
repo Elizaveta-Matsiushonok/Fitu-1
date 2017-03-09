@@ -30,11 +30,12 @@ public class FileUploadRestController {
 
     @Autowired
     ImageService imageService;
+
     @Autowired
     ServletContext servletContext;
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public List<ImageDTO> handleFileUpload(MultipartHttpServletRequest request) {
+    public List<ImageDTO> fileUpload(MultipartHttpServletRequest request) {
         return convertImageCollectionToDTO(imageService.uploadImages(request));
     }
 
