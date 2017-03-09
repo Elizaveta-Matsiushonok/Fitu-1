@@ -1,11 +1,9 @@
 package com.linoge.models.shared;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.ServletContext;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,7 +15,7 @@ import java.util.List;
 @Service
 public final class FileWorker {
 
-    private final String RELATIVE_PATH = "files/";
+    private static final String RELATIVE_PATH = "files/";
 
     public static void delete(String nameFile) throws FileNotFoundException {
         exists(nameFile);

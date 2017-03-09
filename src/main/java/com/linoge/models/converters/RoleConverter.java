@@ -17,7 +17,7 @@ import static java.util.stream.Collectors.toList;
 @Converter
 public final class RoleConverter implements AttributeConverter<List<Role>, String> {
 
-    private final String SEPARATOR = "|";
+    private static final String SEPARATOR = "|";
 
     @Override
     public String convertToDatabaseColumn(List<Role> roles) {
