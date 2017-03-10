@@ -16,6 +16,7 @@ import java.util.List;
  * Created by Timo on 03.02.2017.
  */
 @Service
+//@Slf4j//logbag
 public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     DepartmentDAO departmentDAO;
