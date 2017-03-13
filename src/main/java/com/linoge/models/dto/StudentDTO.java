@@ -13,12 +13,14 @@ import java.util.List;
  */
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class StudentDTO {
     public Long id;
     public String fullName;
     public String groupNumber;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<OrganisationDTO> organisations;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)

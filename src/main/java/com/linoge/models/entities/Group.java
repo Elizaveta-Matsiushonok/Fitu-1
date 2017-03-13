@@ -12,9 +12,9 @@ import java.util.Set;
  * Created by Timo on 13.01.2017.
  */
 @Entity
-@NoArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "`group`")
 public class Group {

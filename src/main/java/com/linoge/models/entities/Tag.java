@@ -14,9 +14,9 @@ import java.util.List;
  */
 @Entity
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tag")
 public class Tag {
     @Id

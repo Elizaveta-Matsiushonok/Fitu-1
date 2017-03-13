@@ -12,9 +12,9 @@ import java.util.Set;
  * Created by Timo on 03.03.2017.
  */
 @Entity
-@NoArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "admission_order")
 public class AdmissionOrder {
@@ -26,6 +26,12 @@ public class AdmissionOrder {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "date_of_begin")
+    private String beginDate;
+
+    @Column(name = "date_of_end")
+    private String endDate;
 
     @OneToMany(mappedBy = "admissionOrder")
     private Set<Student> students;
