@@ -11,10 +11,10 @@ import javax.persistence.*;
  * Created by Timo on 30.01.2017.
  */
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "organisation")
 public class Organisation {
     @Id

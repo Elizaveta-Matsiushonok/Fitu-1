@@ -19,33 +19,28 @@ import java.util.List;
  * Created by Timo on 11.01.2017.
  */
 @Entity
-@NoArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "student")
 public class Student {
+    @Column(name = "education_basis")
+    @Enumerated(EnumType.ORDINAL)
+    EducationBasis basis;
+    @Column(name = "education_number")
+    @Enumerated(EnumType.ORDINAL)
+    EducationNumber number;
+    @Column(name = "education_time")
+    @Enumerated(EnumType.ORDINAL)
+    EducationTime time;
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long id;
-
     @Column(name = "full_name", nullable = false)
     @Convert(converter = FullNameConverter.class)
     private FullName fullName;
-
-    @Column(name = "education_basis")
-    @Enumerated(EnumType.ORDINAL)
-    EducationBasis basis;
-
-    @Column(name = "education_number")
-    @Enumerated(EnumType.ORDINAL)
-    EducationNumber number;
-
-    @Column(name = "education_time")
-    @Enumerated(EnumType.ORDINAL)
-    EducationTime time;
-
     @ManyToOne
     @JoinColumn(name = "order_id")
     private AdmissionOrder admissionOrder;
@@ -60,6 +55,4 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     private List<Organisation> organisation;
-
-
 }

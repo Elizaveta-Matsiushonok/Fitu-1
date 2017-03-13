@@ -11,9 +11,9 @@ import javax.persistence.*;
  * Created by Timo on 13.02.2017.
  */
 @Entity
-@NoArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "image")
 public class Image {
