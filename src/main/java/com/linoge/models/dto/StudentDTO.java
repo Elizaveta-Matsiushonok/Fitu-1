@@ -20,6 +20,9 @@ public class StudentDTO {
     public String fullName;
     public String groupNumber;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)//номер студенческого билета, нужен для создании юзера
+    public String studentIdNumber;
+
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<OrganisationDTO> organisations;
 

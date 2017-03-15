@@ -24,8 +24,8 @@ public class Group {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "group_id", nullable = false)
-    private String groupId;
+    @Column(name = "group_number", nullable = false)
+    private String groupNumber;
 
     @OneToMany(mappedBy = "group")
     private Set<Student> students;
@@ -33,4 +33,11 @@ public class Group {
     @ManyToOne
     @JoinColumn(name = "speciality_id")
     private Speciality speciality;
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "groupNumber='" + groupNumber + '\'' +
+                '}';
+    }
 }

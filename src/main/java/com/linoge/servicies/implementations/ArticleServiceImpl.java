@@ -64,7 +64,7 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = articleDAO.findOne(id);
         article.getImages().forEach(image -> {
             try {
-                FileWorker.delete(image.getName());
+                FileWorker.delete(image.getId());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

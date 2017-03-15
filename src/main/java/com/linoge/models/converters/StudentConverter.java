@@ -33,7 +33,7 @@ public final class StudentConverter {
         return StudentDTO.builder()
                 .id(student.getId())
                 .fullName(convertFullNameToString(student.getFullName()))
-                .groupNumber(student.getGroup().getGroupId())
+                .groupNumber(student.getGroup().getGroupNumber())
                 .organisations(convertOrganisationCollectionToDTO(student.getOrganisation()))
                 .basis(basis)
                 .number(number)

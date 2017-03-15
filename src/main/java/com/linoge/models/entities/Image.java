@@ -23,9 +23,6 @@ public class Image {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
-
     @ManyToOne
     @JoinColumn(name = "article_id")
     private Article article;

@@ -31,10 +31,15 @@ public class StudentRestController {
         studentService.setGroup(studentId, groupId);
     }
 
+    @RequestMapping(path = "/setorder", method = RequestMethod.POST)
+    public void setOrder(@RequestParam(value = "studentId") Long studentId,
+                         @RequestParam(value = "orderId") Long orderId) {
+        studentService.setOrder(studentId, orderId);
+    }
 
-
-    //set order
-
-    //set userID
-
+    @RequestMapping(path = "/setuser", method = RequestMethod.POST)
+    public void setUser(@RequestParam(value = "studentId") Long studentId,
+                        @RequestParam(value = "userId") Long userId) {
+        studentService.setUser(studentId, userId);
+    }
 }

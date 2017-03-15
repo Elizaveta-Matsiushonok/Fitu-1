@@ -25,7 +25,8 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "student")
 public class Student {
-
+    @Column(name = "student_id_number")//номер студенческого билета, нужен для создании юзера
+    public String studentIdNumber;
     @Column(name = "education_basis")
     @Enumerated(EnumType.ORDINAL)
     EducationBasis basis;
@@ -53,4 +54,5 @@ public class Student {
     private User user;
     @OneToMany(mappedBy = "student")
     private List<Organisation> organisation;
+
 }

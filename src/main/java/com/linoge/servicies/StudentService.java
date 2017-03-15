@@ -14,4 +14,8 @@ public interface StudentService{
     Long createStudentFromDTO(StudentDTO studentDTO);
 
     void setGroup(Long studentId, Long groupId);
+
+    void setOrder(Long studentId, Long orderId);
+
+    void setUser(Long studentId, Long userId);
 }
