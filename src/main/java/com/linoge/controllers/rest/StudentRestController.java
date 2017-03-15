@@ -25,7 +25,13 @@ public class StudentRestController {
         return studentService.createStudentFromDTO(studentDTO);
     }
 
-    //set group
+    @RequestMapping(path = "/setgroup", method = RequestMethod.POST)
+    public void setGroup(@RequestParam(value = "studentId") Long studentId,
+                         @RequestParam(value = "groupId") Long groupId) {
+        studentService.setGroup(studentId, groupId);
+    }
+
+
 
     //set order
 

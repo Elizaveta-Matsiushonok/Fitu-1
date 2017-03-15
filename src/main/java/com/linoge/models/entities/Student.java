@@ -25,6 +25,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "student")
 public class Student {
+
     @Column(name = "education_basis")
     @Enumerated(EnumType.ORDINAL)
     EducationBasis basis;
@@ -44,15 +45,12 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private AdmissionOrder admissionOrder;
-
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
-
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-
     @OneToMany(mappedBy = "student")
     private List<Organisation> organisation;
 }

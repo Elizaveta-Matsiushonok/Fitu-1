@@ -76,4 +76,12 @@ public class StudentServiceImpl implements StudentService {
                 .build())
                 .getId();
     }
+
+    @Override
+    public void setGroup(Long studentId, Long groupId) {
+        Group group = groupDAO.findOne(groupId);
+        Student student = studentDAO.findOne(studentId);
+        student.setGroup(group);
+        studentDAO.saveAndFlush(student);
+    }
 }
