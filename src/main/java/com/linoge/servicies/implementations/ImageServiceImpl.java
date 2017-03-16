@@ -6,37 +6,52 @@ import com.linoge.models.shared.FileWorker;
 import com.linoge.servicies.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * Created by Timo on 17.02.2017.
  */
 @Service
 public class ImageServiceImpl implements ImageService {
+
+    private static final String RELATIVE_PATH = "files/";
     @Autowired
     ImageDAO imageDAO;
-
     @Autowired
     FileWorker imageWriter;
 
-
     @Override
     public List<Image> uploadImages(MultipartHttpServletRequest request) {
-        return imageDAO.save(imageWriter.upload(request).stream()
-                .map(name -> Image.builder()
-                        .name(name)
-                        .build())
-                .collect(toList()));
+        List<Long> result = new ArrayList<>();
+        Iterator<String> itr = request.getFileNames();
+        while (itr.hasNext()) {
+            MultipartFile mpf = request.getFile(itr.next());
+            try {
+                Long id = imageDAO.save(new Image()).getId();
+                BufferedOutputStream stream =
+                        new BufferedOutputStream(new FileOutputStream(new File(RELATIVE_PATH +
+                                id)));
+                stream.write(mpf.getBytes());
+                stream.close();
+                result.add(id);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return imageDAO.findAll(result);
     }
 
     @Override
     public Image getImageById(Long id) {
         return imageDAO.getOne(id);
     }
-
-
 }

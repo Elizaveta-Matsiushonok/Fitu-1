@@ -12,8 +12,6 @@ public interface ArticleService {
 
     List<Article> getArticles();
 
-    Long createArticle(String text, String title, List<Long> tagsId);
-
     List<Article> getArticleByTag(Long tagId);
 
     Article getArticleById(Long articleId);
@@ -24,7 +22,5 @@ public interface ArticleService {
 
     void updateArticle(ArticleDTO article);
 
-    void addImages(List<Long> list, Long articleId);
-
-    List<Article> getArticlesByPage(Long number);
+    List<Article> getArticlesByPage(Integer number);
 }

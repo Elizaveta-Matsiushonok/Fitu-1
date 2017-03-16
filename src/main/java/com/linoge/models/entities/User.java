@@ -1,6 +1,5 @@
 package com.linoge.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.linoge.models.converters.RoleConverter;
 import com.linoge.models.enums.Role;
 import lombok.AllArgsConstructor;
@@ -10,18 +9,16 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Tim on 08.01.2017.
  */
 @Data
 @Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Table(name = "user")
 public class User implements UserDetails {
 

@@ -12,9 +12,9 @@ import java.util.List;
  * Created by Timo on 11.01.2017.
  */
 @Entity
-@NoArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "speciality")
 public class Speciality {
@@ -23,9 +23,6 @@ public class Speciality {
     @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long id;
-
-    @Column(name = "speciality_id", nullable = false)
-    private String specialityId;
 
     @Column(name = "name", nullable = false)
     private String name;

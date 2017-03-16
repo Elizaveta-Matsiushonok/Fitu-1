@@ -11,9 +11,9 @@ import javax.persistence.*;
  * Created by Timo on 13.02.2017.
  */
 @Entity
-@NoArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "image")
 public class Image {
@@ -22,9 +22,6 @@ public class Image {
     @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long id;
-
-    @Column(name = "name")
-    private String name;
 
     @ManyToOne
     @JoinColumn(name = "article_id")

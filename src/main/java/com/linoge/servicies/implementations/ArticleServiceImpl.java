@@ -2,7 +2,6 @@ package com.linoge.servicies.implementations;
 
 import com.linoge.dao.ArticleDAO;
 import com.linoge.dao.ImageDAO;
-import com.linoge.models.converters.ArticleConverter;
 import com.linoge.models.converters.SimpleDateConverter;
 import com.linoge.models.dto.ArticleDTO;
 import com.linoge.models.entities.Article;
@@ -13,11 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -29,36 +28,21 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
-    private static final int ARTICLE_COUNT = 10;
+    private static final int ARTICLE_COUNT_ON_PAGE = 10;
+    private static final String SORTING_FIELD = "date";
+
     @Autowired
     ArticleDAO articleDAO;
     @Autowired
     ImageDAO imageDAO;
     @Autowired
     TagService tagService;
-    private Comparator<Article> byDate = Collections.reverseOrder(Comparator.comparing(Article::getDate));
+
 
     @Override
     @Cacheable("articles")
     public List<Article> getArticles() {
         return articleDAO.findAll();
-    }
-
-    @Override
-    @Caching(evict = {
-            @CacheEvict(value = "articles", allEntries = true),
-            @CacheEvict(value = "articles_pages", allEntries = true)
-    })
-    public Long createArticle(String text, String title, List<Long> tagsId) {
-        return articleDAO.saveAndFlush(Article.builder()
-                .header(ArticleConverter.getHeader(text))
-                .body(ArticleConverter.getBody(text))
-                .title(title)
-                .tags(tagsId.stream()
-                        .map(tag -> tagService.findTagById(tag))
-                        .collect(toList()))
-                .date(SimpleDateConverter.getSimpleFormatDate(new Date())).build())
-                .getId();
     }
 
     @Override
@@ -80,7 +64,7 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = articleDAO.findOne(id);
         article.getImages().forEach(image -> {
             try {
-                FileWorker.delete(image.getName());
+                FileWorker.delete(image.getId());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -89,8 +73,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "articles", allEntries = true),
+            @CacheEvict(value = "articles_pages", allEntries = true)
+    })
     public Long createArticleFromDTO(ArticleDTO article) {
-        return articleDAO.saveAndFlush(Article.builder()
+        Long result = articleDAO.saveAndFlush(Article.builder()
                 .body(article.getBody())
                 .header(article.getHeader())
                 .title(article.getTitle())
@@ -100,6 +88,9 @@ public class ArticleServiceImpl implements ArticleService {
                 .date(SimpleDateConverter.getSimpleFormatDate(new Date()))
                 .build())
                 .getId();
+        addImages(article.getImageId(), result);
+        return result;
+
     }
 
     @Override
@@ -108,7 +99,7 @@ public class ArticleServiceImpl implements ArticleService {
             @CacheEvict(value = "articles_pages", allEntries = true)
     })
     public void updateArticle(ArticleDTO article) {
-        articleDAO.saveAndFlush(Article.builder()
+        Long result = articleDAO.saveAndFlush(Article.builder()
                 .id(article.getId())
                 .body(article.getBody())
                 .header(article.getHeader())
@@ -117,13 +108,14 @@ public class ArticleServiceImpl implements ArticleService {
                         .map(tagDTO -> tagService.findTagById(tagDTO.getId()))
                         .collect(toList()))
                 .date(articleDAO.getOne(article.getId()).getDate())
-                .build());
+                .build())
+                .getId();
+        addImages(article.getImageId(), result);
     }
 
-    @Override
-    public void addImages(List<Long> list, Long articleId) {
+    private void addImages(List<Long> images, Long articleId) {
         Article article = articleDAO.getOne(articleId);
-        imageDAO.findAll(list).forEach(image -> {
+        imageDAO.findAll(images).forEach(image -> {
             image.setArticle(article);
             imageDAO.saveAndFlush(image);
         });
@@ -131,11 +123,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Cacheable(value = "articles_pages", key = "#number")
-    public List<Article> getArticlesByPage(Long number) {
-        return getArticles().stream()
-                .sorted(byDate)
-                .skip((number - 1) * ARTICLE_COUNT)
-                .limit(number * ARTICLE_COUNT)
-                .collect(toList());
+    public List<Article> getArticlesByPage(Integer number) {
+        int count = (((int) articleDAO.count() - 1) / ARTICLE_COUNT_ON_PAGE);
+        return articleDAO.findAll(new PageRequest(count - number, ARTICLE_COUNT_ON_PAGE,
+                Sort.Direction.DESC, SORTING_FIELD)).getContent();
     }
 }

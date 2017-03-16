@@ -13,9 +13,9 @@ import java.util.List;
  * Created by Timo on 28.12.2016.
  */
 @Entity
-@NoArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "article")
 public class Article {

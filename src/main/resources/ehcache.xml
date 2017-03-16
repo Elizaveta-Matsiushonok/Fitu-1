@@ -15,7 +15,7 @@
     />
     <cache
             name="articles"
-            maxElementsInMemory="100"
+            maxElementsInMemory="1"
             eternal="false"
             timeToIdleSeconds="0"
             timeToLiveSeconds="0"
@@ -25,7 +25,7 @@
     />
     <cache
             name="articles_pages"
-            maxElementsInMemory="100"
+            maxElementsInMemory="10"
             eternal="false"
             timeToIdleSeconds="0"
             timeToLiveSeconds="0"

@@ -2,11 +2,8 @@ package com.linoge.models.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 
 import java.util.List;
 
@@ -15,8 +12,6 @@ import java.util.List;
  */
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class ArticleDTO {
     public Long id;
     public String title;
@@ -30,4 +25,7 @@ public class ArticleDTO {
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public List<TagDTO> tags;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    public List<Long> imageId;
 }

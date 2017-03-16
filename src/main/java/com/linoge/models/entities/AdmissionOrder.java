@@ -6,26 +6,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
- * Created by Timo on 30.01.2017.
+ * Created by Timo on 03.03.2017.
  */
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "organisation")
-public class Organisation {
+@Table(name = "admission_order")
+public class AdmissionOrder {
+
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @Column(name = "date_of_begin")
+    private String beginDate;
+
+    @Column(name = "date_of_end")
+    private String endDate;
+
+    @OneToMany(mappedBy = "admissionOrder")
+    private Set<Student> students;
 }

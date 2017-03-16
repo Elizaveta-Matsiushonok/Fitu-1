@@ -21,9 +21,10 @@ build/
 nbbuild/
 dist/
 nbdist/
-.nb-gradle/
+.nb-gradle/git
 /.mvn/
 /npm-debug.log
 /mvnw.cmd
 /mvnw
 /files/
+/pdf/

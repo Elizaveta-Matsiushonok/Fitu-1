@@ -13,9 +13,9 @@ import java.util.List;
  * Created by Timo on 03.02.2017.
  */
 @Entity
-@NoArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "subject")
 public class Subject {

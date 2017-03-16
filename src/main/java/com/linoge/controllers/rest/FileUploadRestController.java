@@ -30,19 +30,19 @@ public class FileUploadRestController {
 
     @Autowired
     ImageService imageService;
+
     @Autowired
     ServletContext servletContext;
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public List<ImageDTO> handleFileUpload(MultipartHttpServletRequest request) {
+    public List<ImageDTO> fileUpload(MultipartHttpServletRequest request) {
         return convertImageCollectionToDTO(imageService.uploadImages(request));
     }
 
     @Cacheable(value = "images", key = "#id")
     @RequestMapping(value = "/getimage", method = RequestMethod.GET)
     public byte[] getImage(@RequestParam("id") Long id) throws IOException {
-        InputStream in = new FileInputStream(RELATIVE_PATH +
-                imageService.getImageById(id).getName());
+        InputStream in = new FileInputStream(RELATIVE_PATH + id);
         byte[] image = toByteArray(in);
         in.close();
         return image;

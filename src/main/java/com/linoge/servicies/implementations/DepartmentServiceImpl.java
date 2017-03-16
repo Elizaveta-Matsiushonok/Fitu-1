@@ -16,6 +16,7 @@ import java.util.List;
  * Created by Timo on 03.02.2017.
  */
 @Service
+//@Slf4j//logbag
 public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     DepartmentDAO departmentDAO;
@@ -44,17 +45,16 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public void addLectors(Long departmentId, List<Long> lectorsId) {
-        Department department = departmentDAO.findOne(departmentId);
         lectorsId.forEach(id -> {
             Lector lector = lectorDAO.findOne(id);
-            lector.setDepartment(department);
+            lector.setDepartment(departmentDAO.findOne(departmentId));
             lectorDAO.saveAndFlush(lector);
         });
     }
 
     @Override
     public void deleteLectors(Long departmentId, List<Long> lectorsId) {
-        Department department = departmentDAO.findOne(departmentId);
+        //Department department = departmentDAO.findOne(departmentId);
         lectorsId.forEach(id -> {
             Lector lector = lectorDAO.findOne(id);
             lector.setDepartment(null);
