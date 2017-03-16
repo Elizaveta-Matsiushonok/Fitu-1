@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class PDFRestController {
 
-
     @RequestMapping(value = "/getpdf", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getPDF(@RequestParam("id") Long organisationId) throws Exception {
-
-
         return PdfBuilder.buildPDF();
     }
 }

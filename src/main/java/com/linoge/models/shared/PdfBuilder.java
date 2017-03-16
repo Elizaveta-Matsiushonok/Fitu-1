@@ -1,10 +1,13 @@
 package com.linoge.models.shared;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.ElementList;
+import com.itextpdf.tool.xml.XMLWorkerHelper;
 import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.io.File;
 import java.io.FileOutputStream;
+
 
 /**
  * Created by Timo on 02.03.2017.
@@ -28,11 +32,11 @@ public final class PdfBuilder {
 
     }
 
-    private static String createFileName(){
+    private static String createFileName() {
         return PATH_TO_PDF_FILES + "filename" + FILE_FORMAT;
     }
 
-    private static Font getFont() throws Exception{
+    private static Font getFont() throws Exception {
         BaseFont sans =
                 BaseFont.createFont(
                         FONT,
@@ -41,14 +45,26 @@ public final class PdfBuilder {
         return new Font(sans, FONT_SIZE);
     }
 
-    private static void createContent(Document document) throws Exception{
-        String text = "Справка, справочка. \nА тут цифирьки - #960-c от 24.07.2015";
-        document.add(new Paragraph(text, getFont()));
+    private static void createContent(Document document) throws Exception {
+
+
+        String str = "<html><head></head><body>" +
+                "<a href='http://www.rgagnon.com/howto.html'><b>Real's HowTo</b></a>" +
+                "<h1>Show your support</h1>" +
+                "<p>It DOES cost a lot to produce this site - in ISP storage and transfer fees, </p>" +
+                "</body></html>";
+
+        ElementList list = XMLWorkerHelper.parseToElementList(str, null);
+        for (Element el : list) {
+            document.add(el);
+        }
+
+
     }
 
-    public static ResponseEntity<byte[]> buildPDF() throws Exception{
+    public static ResponseEntity<byte[]> buildPDF() throws Exception {
         String fileName = createFileName();
-        Document document = new Document();
+        Document document = new Document(PageSize.A5);
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
 
         PdfWriter.getInstance(document, fileOutputStream);
