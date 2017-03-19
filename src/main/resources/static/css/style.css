@@ -587,4 +587,9 @@ fieldset {border: 1px solid #9f8b7b; padding: 15px 30px}
 	margin-bottom: 2px;
 }
 
+.img-responsive {
+	display: block;
+	max-width: 300px;
+	height: 150px;
+}
 
