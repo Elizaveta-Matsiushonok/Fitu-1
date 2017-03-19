@@ -131,6 +131,11 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Long getArticlesCount() {
-        return articleDAO.count();
+        Long articles = articleDAO.count();
+        Long count = articles / ARTICLE_COUNT_ON_PAGE;
+        if (articles % 10 > 0) {
+            count++;
+        }
+        return count;
     }
 }
