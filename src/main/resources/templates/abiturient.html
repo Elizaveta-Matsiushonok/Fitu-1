@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.springframework.org/schema/security">
 <head>
-<link rel="stylesheet" href="css/bootstrap.css"></link>
-<link rel="stylesheet" href="css/style.css"></link>
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">	</link>
+
+	<!--FIX-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="css/util/header.css"/>
+	<link rel="stylesheet" href="css/util/footer.css"/>
+
+	<script>
+        $(document).ready(function(){
+            $("li[name='abiturient']").addClass("active");
+        });
+	</script>
+
 <style type="text/css">
 thead > tr > th{
 	text-align: center;
@@ -11,7 +24,7 @@ thead > tr > th{
 tbody{
 	text-align: center;
 }
-a{
+td > a{
 	text-decoration: underline;
 }
 </style>

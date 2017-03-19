@@ -1,0 +1,14 @@
+footer{
+    background: #222;
+}
+.section-title{
+    color: white;
+}
+.footer-ul li{
+    color: #00CAFB;
+}
+.references a,
+.contact-info a,
+.contact-info p{
+    color: #00CAFB;
+}
