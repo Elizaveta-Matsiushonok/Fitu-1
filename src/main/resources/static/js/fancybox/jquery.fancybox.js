@@ -106,13 +106,13 @@
 			keys  : {
 				next : {
 					13 : 'left', // enter
-					34 : 'up',   // page down
+					34 : 'up',   // util down
 					39 : 'left', // right arrow
 					40 : 'up'    // down arrow
 				},
 				prev : {
 					8  : 'right',  // backspace
-					33 : 'down',   // page up
+					33 : 'down',   // util up
 					37 : 'right',  // left arrow
 					38 : 'down'    // up arrow
 				},
@@ -2005,7 +2005,7 @@
 			parent : $('body')
 		});
 
-		//Get real width of page scroll-bar
+		//Get real width of util scroll-bar
 		w1 = $(window).width();
 
 		H.addClass('fancybox-lock-test');

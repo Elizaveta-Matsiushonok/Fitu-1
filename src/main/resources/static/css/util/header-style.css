@@ -3,7 +3,6 @@
 margin-left: 30px;
 }
 .navbar-nav li.search{
-	width: 25%;
     float: left;
     position: relative;
     min-height: 1px;
@@ -104,6 +103,6 @@ text-decoration: none;
   transform: scale(1);
 }
 #fitu-header #navbar .navbar-form{
-	margin-top: 10px;
+
 	margin-bottom: 0;
 }

@@ -1,7 +1,6 @@
 @font-face {
   font-family: 'simple-line-icons';
-  src: url('../fonts/icons/icons.ttf?v=2.2.2') format('truetype'),
-        url('../fonts/icons/icons.svg?v=2.2.2#simple-line-icons') format('svg');
+  src: url('../../../fonts/icons/icons.ttf?v=2.2.2') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
