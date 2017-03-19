@@ -1,0 +1,109 @@
+
+.navbar-nav li{
+margin-left: 30px;
+}
+.navbar-nav li.search{
+	width: 25%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    width: auto;
+}
+.navbar{
+	overflow: hidden;
+	border-radius: 0px;
+}
+
+@media screen and (max-width: 1300px) {
+
+    .navbar-nav li{
+		margin-left: 15px;
+	}
+	.nav>li>a{
+		padding-left: 15px; 
+	}
+	#fitu-header #navbar li a {
+    font-size: 16px !important;
+	}
+
+}
+@media screen and (max-width: 1120px) {
+    .navbar-nav li{
+		margin-left: 7px;
+	}
+	.nav>li>a{
+		padding-left: 7px; 
+	}
+	#fitu-header #navbar li a {
+    font-size: 16px !important;
+	}
+}
+@media screen and (max-width: 1020px) {
+
+    .navbar-nav li{
+		margin-left: 3px;
+	}
+	.nav>li>a{
+		padding-left: 3px; 
+	}
+	#fitu-header #navbar li a {
+    font-size: 14px !important;
+	}
+}
+@media screen and (max-width: 890px) {
+.navbar-collapse {
+    width: auto;
+    border-top: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+}
+
+
+#fitu-header .navbar-default {
+    border: transparent;
+    background-color: rgb(111, 84, 153);
+}
+#fitu-header #navbar li a {
+    font-family: 'PT Sans', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: 400;
+}
+#fitu-header #navbar li a:hover {
+    color: rgb(0, 0, 0);
+}
+
+.navbar-nav > li > a {
+	padding-top:10px !important; 
+	padding-bottom:10px !important;
+}
+.navbar {
+	min-height: 40px !important
+}
+#fitu-header #navbar a:after {
+text-decoration: none;
+  display: block;
+  height: 2px;
+  background-color: #e6ccff;
+  content: "";
+  border-bottom: 1px solid #e6ccff;
+  transform: scale(0);
+
+}
+
+#fitu-header #navbar a:hover:after {
+  transition: transform .4s cubic-bezier(0.11, 0.7, 0, 1);
+  transform: scale(1);
+}
+#fitu-header #navbar .navbar-form{
+	margin-top: 10px;
+	margin-bottom: 0;
+}

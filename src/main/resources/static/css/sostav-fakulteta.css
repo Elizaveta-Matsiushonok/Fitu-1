@@ -1,0 +1,29 @@
+.info{
+	padding-top: 5px;
+	font-size: 16px;
+}
+h2{
+	text-align:center;
+}
+.info p{
+	font-size: 14px;
+}
+.info a{
+	font-size: 14px;
+}
+img{
+	height: 200px;
+	width: 250px;
+}
+i:hover::after{
+ content: attr(data-title); /* Выводим текст */
+    position: absolute; /* Абсолютное позиционирование */
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,230,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    border: 1px solid #333; /* Параметры рамки */
+}
+#faculty-members{
+	padding-top:50px;
+}
