@@ -27,8 +27,13 @@ public class ArticleRestController {
     }
 
     @RequestMapping(path = "/getarticlesbypage", method = RequestMethod.GET)
-    public List<ArticleDTO> getArticleByPage(@RequestParam("number") Integer number) {
+    public List<ArticleDTO> getArticlesByPage(@RequestParam("number") Integer number) {
         return convertArticleCollectionToDTO(articleService.getArticlesByPage(number));
+    }
+
+    @RequestMapping(path = "/getarticlescount", method = RequestMethod.GET)
+    public Long getArticlesCount() {
+        return articleService.getArticlesCount();
     }
 
     @RequestMapping(path = "/getarticlebyid", method = RequestMethod.GET)

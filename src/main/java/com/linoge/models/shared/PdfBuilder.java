@@ -50,11 +50,14 @@ public final class PdfBuilder {
 
         String str = "<html><head></head><body>" +
                 "<a href='http://www.rgagnon.com/howto.html'><b>Real's HowTo</b></a>" +
-                "<h1>Show your support</h1>" +
-                "<p>It DOES cost a lot to produce this site - in ISP storage and transfer fees, </p>" +
+                "<div class=\"test_class\"><h1>Show your support</h1></div>" +
+                "<p style=\"color: red\">It DOES cost a lot to produce this site - in ISP storage and transfer fees, </p>" +
                 "</body></html>";
+        String css = ".test_class {" +
+                "  color: green;" +
+                "}";
 
-        ElementList list = XMLWorkerHelper.parseToElementList(str, null);
+        ElementList list = XMLWorkerHelper.parseToElementList(str, css);
         for (Element el : list) {
             document.add(el);
         }

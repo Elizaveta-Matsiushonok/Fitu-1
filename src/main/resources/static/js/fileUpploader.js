@@ -11,13 +11,16 @@ function uploadFormData(){
     $.ajax({
         url: 'http://localhost:8081/upload',
         data: myForm,
-        dataType: 'text',
+        dataType: 'json',
         processData: false,
         contentType: false,
         type: 'POST',
         success: function(data){
-            //  $('#result').html(data+ " uploaded by FormData!");
-            $('#result').html(data);
+            var list = "";
+            for (i = 0; i < data.length; i++) {
+                list += data[i].path + "\n";
+            }
+            $('#result').html(list);
         }
     });
 }

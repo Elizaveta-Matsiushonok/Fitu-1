@@ -128,4 +128,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleDAO.findAll(new PageRequest(count - number, ARTICLE_COUNT_ON_PAGE,
                 Sort.Direction.DESC, SORTING_FIELD)).getContent();
     }
+
+    @Override
+    public Long getArticlesCount() {
+        return articleDAO.count();
+    }
 }

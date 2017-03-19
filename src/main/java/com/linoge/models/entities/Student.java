@@ -1,7 +1,6 @@
 package com.linoge.models.entities;
 
 
-
 import com.linoge.models.converters.FullNameConverter;
 import com.linoge.models.enums.EducationBasis;
 import com.linoge.models.enums.EducationNumber;
@@ -54,5 +53,4 @@ public class Student {
     private User user;
     @OneToMany(mappedBy = "student")
     private List<Organisation> organisation;
-
 }
