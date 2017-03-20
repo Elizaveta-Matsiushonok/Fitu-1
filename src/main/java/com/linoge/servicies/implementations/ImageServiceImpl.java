@@ -9,10 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -26,6 +23,7 @@ public class ImageServiceImpl implements ImageService {
     private static final String RELATIVE_PATH = "files/";
     @Autowired
     ImageDAO imageDAO;
+
     @Autowired
     FileWorker imageWriter;
 
@@ -53,5 +51,15 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public Image getImageById(Long id) {
         return imageDAO.getOne(id);
+    }
+
+    @Override
+    public void deleteImageById(Long id) {
+        try {
+            FileWorker.delete(id);
+            imageDAO.delete(id);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

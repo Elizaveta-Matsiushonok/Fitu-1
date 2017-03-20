@@ -1,0 +1,411 @@
+body {
+    font-family: 'PT Sans', sans-serif;
+   font-weight: 300; font-size: 20px;
+    line-height: 1.5; color: rgb(127, 127, 127);
+     background: rgb(255, 255, 255);
+      height: 100%;
+       position: relative;
+        }
+#description { color: white; }
+#fitu-explore {
+   background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center top;
+    height: 530px;
+     }
+.head {
+    size: 250px;
+    height: 40px;
+}
+a { 
+  color: rgb(255, 59, 48);
+   transition: 0.5s;
+    font-size: 18px;
+     }
+a:hover, a:active, a:focus { 
+  color: rgb(255, 59, 48);
+   outline: none; 
+ }
+p { 
+  margin-bottom: 1.5em; 
+  font-size: 16px;
+   }
+h1, h2, h3, h4, h5, h6 { 
+  color: rgb(51, 51, 51);
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+     margin: 0px 0px 30px;
+      }
+::-webkit-selection { 
+  color: rgb(255, 255, 255);
+   background: rgb(31, 181, 246); 
+ }
+::selection { 
+  color: rgb(255, 255, 255);
+   background: rgb(31, 181, 246);
+    }
+#fitu-header { 
+  position: absolute; 
+  z-index: 99;
+   width: 100%;
+    opacity: 1; 
+    top: 0px;
+    height: 40px;
+  }
+#fitu-header .navbar {
+ padding-bottom: 0px;
+  margin-bottom: 0px;
+   }
+#fitu-header #navbar .navbar-right {
+ margin-right: 0px;
+  }
+#fitu-header #navbar li a {
+    font-family: 'PT Sans', sans-serif;
+  background-color: rgb(111, 84, 153);
+   color: rgb(255, 255, 255);
+    position: relative; 
+    font-size: 18px;
+    height: inherit;
+     font-weight: 400;
+      }
+#fitu-header #navbar li a span {
+ position: relative; 
+ display: block; 
+ padding-bottom: 2px; 
+}
+#fitu-header #navbar li a span::before {
+ content: "";
+  position: absolute;
+   width: 100%;
+    height: 2px; 
+    bottom: 0px; 
+    left: 0px; 
+    background-color: rgba(255, 255, 255, 0.498039);
+     visibility: hidden;
+      transform: scaleX(0);
+       transition: all 0.3s ease-in-out 0s;
+        }
+#fitu-header #navbar li a:hover { color: rgb(0, 0, 0); }
+#fitu-header #navbar li a:hover span::before { visibility: visible; transform: scaleX(1); }
+#fitu-header #navbar li.active a {
+    background: none;
+    height: 40px;
+}
+
+
+#fitu-header #navbar li.active a span::before {
+ visibility: visible;
+  transform: scaleX(1); 
+  background-color: rgb(255, 59, 48);
+   }
+#fitu-header #navbar li.call-to-action a { 
+  border: 2px solid rgb(255, 59, 48);
+   padding: 5px 5px 3px;
+   margin: 6px 0px 0px;
+   border-radius: 20px;
+ }
+#fitu-header #navbar li.search {
+    max-width: 150px;
+}
+#fitu-header #navbar li.search input{
+  height: 23px;
+}
+#fitu-header #navbar li.call-to-action a:hover { 
+  background-color: rgb(255, 59, 48); 
+  color: rgb(255, 255, 255);
+   }
+#fitu-header #navbar li.call-to-action a span::before { background-color: transparent; }
+#fitu-header .navbar-brand { 
+  float: left; display: block;
+   font-size: 24px; font-weight: 700;
+    padding-left: 0px;
+     color: rgb(83, 86, 89); 
+     text-transform: uppercase;
+      letter-spacing: 3px; 
+    }
+#fitu-header .navbar-brand > span { color: rgb(255, 59, 48); }
+#fitu-header.navbar-fixed-top { 
+  background: rgb(255, 255, 255);
+   box-shadow: rgba(0, 0, 0, 0.0980392) 0px 0px 9px 0px;
+    margin-top: 0px; top: 0px;
+     position: fixed !important; 
+   }
+#fitu-header.navbar-fixed-top .navbar-brand { color: rgb(83, 86, 89); }
+#fitu-header.navbar-fixed-top #navbar li a { transition: 0.3s; color: rgb(255, 255, 255) !important; }
+#fitu-header.navbar-fixed-top #navbar li a:hover { color: rgb(255, 59, 48); }
+#fitu-header.navbar-fixed-top #navbar li.active a { color: rgb(255, 59, 48) !important; }
+#fitu-header.navbar-fixed-top #navbar li.active a span::before {
+ visibility: visible;
+  transform: scaleX(1);
+   background-color: rgb(255, 59, 48);
+    }
+#fitu-header.navbar-fixed-top #navbar li.call-to-action a { 
+  border: 2px solid rgb(255, 59, 48);
+   padding: 5px 10px 3px;
+    margin: 12px 0px 0px;
+     border-radius: 30px;
+      }
+#fitu-header.navbar-fixed-top #navbar li.call-to-action a:hover {
+ background-color: rgb(255, 59, 48);
+  color: rgb(255, 255, 255) !important; }
+#fitu-header.navbar-fixed-top #navbar li.call-to-action a span::before {
+ background-color: transparent; 
+}
+#fitu-header .navbar-default { 
+  border: transparent; 
+  background-color: rgb(111, 84, 153);
+   margin: 0px;
+    height: 40px;
+    min-height: 40px;
+    padding-left: 50px; 
+    padding-right: 50px;
+     border-radius: 0px;
+      }
+#fitu-header .navbar-default .brand-slogan {
+ margin: 28px 0px 0px 15px; float: left;
+  letter-spacing: 2px; color: rgb(173, 173, 173);
+   }
+#fitu-header .navbar-default .brand-slogan em { color: rgb(255, 59, 48); font-style: normal; }
+#fitu-home .text-inner .call-to-action { display: block; width: 100%; }
+#fitu-home .text-inner .call-to-action a { 
+  width: 200px;
+  display: inline-block;
+   font-size: 20px; padding: 15px 0px;
+    border-radius: 4px; margin-right: 10px;
+     box-shadow: rgba(0, 0, 0, 0.188235) 0px 3px 6px -1px; 
+   }
+#fitu-home .text-inner .call-to-action a.demo { 
+  border: 2px solid rgb(255, 255, 255); text-decoration: none !important; }
+#fitu-home .text-inner .call-to-action a.demo:hover { background: rgba(255, 255, 255, 0.2); }
+#fitu-home .text-inner .call-to-action a.download { 
+  border: 2px solid rgb(255, 59, 48);
+   background: rgb(255, 59, 48); 
+   text-decoration: none !important; 
+ }
+#fitu-services, #fitu-testimony, #fitu-explore, #fitu-faq, #fitu-team, #fitu-trusted, #fitu-footer { padding: 2.0em 0px; }
+#fitu-testimony .wrap-testimony .testimony-slide.active { display: block; }
+.getting-started .call-to-action { display: block; width: 100%; float: left; }
+.getting-started .call-to-action a.sign-up { 
+  float: right;
+   margin-top: 20px;
+    padding: 18px 60px;
+     background: rgb(234, 87, 76);
+      color: rgb(255, 255, 255);
+       border-radius: 4px;
+        box-shadow: rgba(0, 0, 0, 0.188235) 0px 3px 6px -1px;
+         }
+.getting-started .call-to-action a.sign-up:hover, .getting-started .call-to-action a.sign-up:focus, .getting-started .call-to-action a.sign-up:active { text-decoration: none; }
+.getting-started .call-to-action a.sign-up:hover { background: rgb(57, 62, 70); }
+.fitu-pricing { padding: 4em 0px 6em; background: rgb(241, 250, 255); }
+.fitu-pricing .pricing { display: block; float: left; margin-bottom: 30px; }
+.fitu-pricing .price-box { 
+  text-align: center; padding: 30px;
+   background: rgb(255, 255, 255);
+    border-radius: 5px;
+     margin-bottom: 40px;
+      position: relative;
+       box-shadow: rgba(0, 0, 0, 0.188235) 0px 2px 10px -1px; }
+.fitu-pricing .price-box.popular .btn-select-plan { background: rgb(255, 59, 48); }
+.fitu-pricing .price-box .btn-select-plan {
+ padding: 10px 20px;
+  background: rgb(31, 181, 246); 
+  color: rgb(255, 255, 255); 
+  box-shadow: rgba(0, 0, 0, 0.14902) 0px 3px 6px -1px; }
+.fitu-pricing .pricing-plan {
+ margin: 0px 0px 50px; 
+ padding: 0px;
+ font-size: 13px; 
+ letter-spacing: 2px;
+  text-transform: uppercase;
+   font-weight: 700; color: rgb(136, 143, 148);
+    }
+.fitu-pricing .pricing-plan.pricing-plan-offer { margin-bottom: 24px; }
+.fitu-pricing .pricing-plan span { 
+  display: block; 
+  margin-top: 10px; 
+  margin-bottom: 0px; 
+  color: rgb(213, 216, 219);
+   }
+.fitu-pricing .price { font-size: 72px; color: rgb(109, 109, 109); line-height: 50px; }
+.fitu-pricing .price .currency { font-size: 16px; top: -0.4em; padding-right: 10px; }
+.fitu-pricing .price small { 
+  font-size: 13px; 
+  display: block; 
+  text-transform: uppercase; 
+  color: rgb(136, 143, 148); 
+}
+.fitu-services .box-services { position: relative; margin-bottom: 70px; }
+.fitu-services .box-services i { 
+  position: absolute; 
+  left: 0px; top: 0px; 
+  font-size: 54px; 
+  color: rgb(31, 181, 246); 
+}
+.fitu-services .fitu-post { padding-left: 75px; }
+.fitu-services .fitu-post h3 { font-size: 20px; margin-bottom: 15px; }
+.fitu-services .call-to-action .btn-learn { 
+  padding: 12px 30px; 
+  background: rgb(80, 197, 248); 
+  color: rgb(255, 255, 255); 
+}
+.section-heading { float: left; width: 100%; padding-bottom: 50px; margin-bottom: 0px; clear: both; }
+.section-heading h2 { 
+  margin: 0px; 
+  font-size: 40px; 
+  font-weight: 400; 
+  color: rgb(51, 51, 51); 
+  position: relative; 
+  display: block; 
+  padding-bottom: 10px; 
+  line-height: 1.5; 
+}
+.section-heading h3 { 
+  font-size: 18px; 
+  font-weight: 400;
+   line-height: 1.5;
+   color: rgb(143, 152, 159); 
+   position: relative; 
+   display: block; 
+   padding-bottom: 30px; 
+ }
+.section-heading h3::after { 
+  content: ""; 
+  position: absolute;
+   display: block; 
+   width: 50px; 
+   height: 2px; 
+   background: rgb(31, 181, 246); 
+   left: 50%; 
+   margin-left: -25px; 
+   bottom: 0px; 
+ }
+#fitu-footer { background: rgb(63, 82, 103); color: rgb(116, 136, 158); }
+#fitu-footer a { font-size:14px; color: rgb(116, 136, 158); }
+#fitu-footer a:hover { text-decoration: underline; color: rgb(255, 255, 255) !important; }
+#fitu-footer .section-title { 
+  font-size: 18px; 
+  color: rgb(255, 255, 255);
+   position: relative; 
+   padding-bottom: 20px; 
+ }
+#fitu-footer .section-title::after {
+ position: absolute;
+  content: ""; 
+  bottom: 0px; 
+  left: 0px; 
+  display: block;
+   width: 35px; 
+   height: 2px; 
+   background: rgb(31, 181, 246); 
+ }
+#fitu-footer .copy-right { position: relative; padding-top: 20px; margin-top: 40px; }
+#fitu-footer .copy-right > a { color: rgba(255, 255, 255, 0.4); }
+#fitu-footer .copy-right::after { 
+  position: absolute; 
+  content: ""; 
+  top: 0px; 
+  left: 0px; 
+  display: block; 
+  width: 35px; 
+  height: 2px; 
+  background: rgb(31, 181, 246);
+   }
+#fitu-footer .contact-info {  padding-left: 15px; }
+#fitu-footer .contact-info li {
+ font-size: 14px; 
+ list-style: none;
+  margin: 0px 0px 5px;
+   position: relative; 
+   padding-left: 40px; 
+ }
+#fitu-footer .contact-info li i { 
+  position: absolute; 
+  top: 0px; 
+  left: 0px; 
+  font-size: 18px; 
+  color: rgb(31, 181, 246); 
+}
+
+#fitu-footer .social-media { margin: 0px 0px 30px; padding: 0px; }
+#fitu-footer .social-media li { display: inline-block; margin: 0px 10px 0px 0px; padding: 0px; font-size: 24px; }
+#fitu-footer .social-media li a { color: rgb(31, 181, 246); }
+#fitu-footer .social-media li a:hover, #fitu-footer .social-media li a:focus, #fitu-footer .social-media li a:active {
+ text-decoration: none; 
+}
+#fitu-footer .contact-form .form-group input[type="name"], #fitu-footer .contact-form .form-group input[type="text"], #fitu-footer .contact-form .form-group input[type="email"], #fitu-footer .contact-form .form-group textarea { font-size: 16px; }
+#fitu-footer .contact-form .form-group input[type="name"]::-webkit-input-placeholder, #fitu-footer .contact-form .form-group input[type="text"]::-webkit-input-placeholder, #fitu-footer .contact-form .form-group input[type="email"]::-webkit-input-placeholder, #fitu-footer .contact-form .form-group textarea::-webkit-input-placeholder {
+ color: rgba(255, 255, 255, 0.498039); }
+#fitu-footer .contact-form .form-group input {
+ color: rgb(255, 255, 255);
+  border: none;
+   background: rgb(72, 91, 113);
+    box-shadow: none;
+     }
+#fitu-footer .contact-form .form-group textarea { 
+  color: rgb(255, 255, 255);
+   border: none; 
+   background: rgb(72, 91, 113); 
+   box-shadow: none; }
+#fitu-footer #btn-submit { 
+  color: rgba(255, 255, 255, 0.901961) !important;
+   background: rgb(255, 59, 48) !important; }
+.btn { transition: 0.3s; }
+.fitu-nav-toggle { width: 25px; height: 25px; cursor: pointer; text-decoration: none; }
+.fitu-nav-toggle.active i::before, .fitu-nav-toggle.active i::after { background: rgb(255, 59, 48); }
+.fitu-nav-toggle:hover, .fitu-nav-toggle:focus, .fitu-nav-toggle:active {
+ outline: none;
+  border-bottom: none !important; }
+.fitu-nav-toggle i { 
+  position: relative;
+   display: inline-block;
+    zoom: 1; width: 25px;
+     height: 3px;
+      color: rgb(83, 86, 89);
+       font-style: normal;
+        font-variant: normal;
+         font-weight: bold;
+          font-stretch: normal;
+           font-size: 14px;
+            line-height: 0.4;
+             font-family: Helvetica;
+              text-transform: uppercase;
+               text-indent: -55px;
+                background: rgb(83, 86, 89);
+                 transition: all 0.2s ease-out; }
+.fitu-nav-toggle i::before, .fitu-nav-toggle i::after { 
+  content: "";
+   width: 25px;
+    height: 3px;
+     background: rgb(83, 86, 89);
+      position: absolute;
+       left: 0px;
+        transition: 0.2s; }
+.fitu-nav-toggle i::before { top: -7px; }
+.fitu-nav-toggle i::after { bottom: -7px; }
+.fitu-nav-toggle:hover i::before { top: -10px; }
+.fitu-nav-toggle:hover i::after { bottom: -10px; }
+.fitu-nav-toggle.active i { background: transparent; }
+.fitu-nav-toggle.active i::before { top: 0px; transform: rotateZ(45deg); }
+.fitu-nav-toggle.active i::after { bottom: 0px; transform: rotateZ(-45deg); }
+.fitu-nav-toggle {
+ position: absolute;
+  top: 2px; right: 15px;
+   z-index: 21;
+    padding: 6px 0px 0px; 
+    margin: 0px auto;
+     display: none;
+      height: 44px;
+       width: 25px;
+        border-bottom: none !important; }
+.btn { text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+.references{
+	padding-left: 15px;
+}
+.references li{
+	margin-bottom: 5px;
+}
+.btn:hover, .btn:active, .btn:focus {
+ color: rgb(255, 255, 255); 
+ background: rgb(57, 62, 70) !important;
+  outline: none !important; }
+.btn.btn-default:hover, .btn.btn-default:focus, .btn.btn-default:active { border-color: transparent; }

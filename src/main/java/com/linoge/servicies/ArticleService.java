@@ -23,4 +23,6 @@ public interface ArticleService {
     void updateArticle(ArticleDTO article);
 
     List<Article> getArticlesByPage(Integer number);
+
+    Long getArticlesCount();
 }

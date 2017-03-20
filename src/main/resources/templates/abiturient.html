@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.springframework.org/schema/security">
+<head>
+
+	<!--FIX-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="css/util/header.css"/>
+	<link rel="stylesheet" href="css/util/footer.css"/>
+
+	<script>
+        $(document).ready(function(){
+            $("li[name='abiturient']").addClass("active");
+        });
+	</script>
+
+<style type="text/css">
+thead > tr > th{
+	text-align: center;
+}
+tbody{
+	text-align: center;
+}
+td > a{
+	text-decoration: underline;
+}
+</style>
+</head>
+<body>
+<header id="fitu-header" th:replace="fragments/header::header">
+</header>
+	<div class="container-fluid" style="padding-top: 50px;">
+		<div class="col-md-12">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th rowspan="2" style="padding-bottom: 60px">Специальность</th>
+					<th rowspan="2" style="padding-bottom: 60px">Квалификация</th>
+					<th colspan="4">План приема на 2017 год<br/> поформам обучения</th>
+					<th colspan="4">Проходные баллы</th>
+				</tr>
+				<tr>
+					<th>Дневное <br/>бюд./пл.</th>
+					<th>Заочное <br/>бюд./пл.</th>
+					<th>Дист. <br/>платн.</th>
+					<th>ИИТ <br/>вечер/заоч <br/>платное</th>
+					<th>2013</th>
+					<th>2014</th>
+					<th>2015</th>
+					<th>2016</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="padding-top: 15px"><a href="">Автоматизированные системы <br/>обработки информации</a></td>
+					<td>Инженер <br/>по информационным <br/>технологиям</td>
+					<td>55/45</td>
+					<td></td>
+					<td>10</td>
+					<td></td>
+					<td>338</td>
+					<td>332*</td>
+					<td>336</td>
+					<td>342*</td>
+				</tr>
+				<tr>
+					<td><a href="">Искусственный интеллект</a></td>
+					<td>Инженер - системотехник</td>
+					<td>50/10</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>328*</td>
+					<td>323*</td>
+					<td>321</td>
+					<td>331</td>
+				</tr>
+				<tr>
+					<td><a href="">Информационные технологии <br/>и управление в технических <br/>системах</a></td>
+					<td>Инженер по <br/>информационным технологиям <br/>и управлению</td>
+					<td>70/20</td>
+					<td>10/20</td>
+					<td></td>
+					<td>30/60</td>
+					<td>313*</td>
+					<td>309*</td>
+					<td>300</td>
+					<td>311*</td>
+				</tr>
+				<tr>
+					<td><a href="">Промышленная электроника</a></td>
+					<td>Инженер по радиоэлектронике</td>
+					<td>25/5</td>
+					<td></td>
+					<td></td>
+					<td>0/60</td>
+					<td>295</td>
+					<td>292*</td>
+					<td>263</td>
+					<td>290*</td>
+				</tr>
+				<tr>
+					<td><a href="">Информационные системы <br/>и технологии <br/>(в игровой индустрии)</a></td>
+					<td>Инженер - <br/>системный программист - <br/>геймдизайнер</td>
+					<td>10/50</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td>216<br/>(пл.)</td>
+					<td>360</td>
+				</tr>
+			</tbody>
+		</table>
+		<p class="small text-right">* - полупроходной балл.</p>
+	</div>
+	</div>
+</body>
+</html>

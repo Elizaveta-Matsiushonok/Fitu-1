@@ -1,7 +1,6 @@
 package com.linoge.models.entities;
 
 
-
 import com.linoge.models.converters.FullNameConverter;
 import com.linoge.models.enums.EducationBasis;
 import com.linoge.models.enums.EducationNumber;
@@ -25,6 +24,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "student")
 public class Student {
+
     @Column(name = "student_id_number")//номер студенческого билета, нужен для создании юзера
     public String studentIdNumber;
     @Column(name = "education_basis")
@@ -54,5 +54,4 @@ public class Student {
     private User user;
     @OneToMany(mappedBy = "student")
     private List<Organisation> organisation;
-
 }
