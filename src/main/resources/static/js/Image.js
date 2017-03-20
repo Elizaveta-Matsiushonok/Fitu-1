@@ -41,15 +41,14 @@ var Image = {
         var image = $(elem).attr('id').substr(-1);
         var imageId = Image.imageArray[image].id;
         $.ajax({
-            url: 'http://localhost:8081/upload',
-            data: myForm,
+            url: 'http://localhost:8081/deleteimage',
+            data: {"id":imageId},
             dataType: 'json',
             processData: false,
             contentType: false,
             type: 'POST',
             success: function (data) {
-                Image.imageArray.push(data[0]);
-                Image.displayImageArray(Image.imageArray);
+                console.log("OK");
             }
         });
     }
