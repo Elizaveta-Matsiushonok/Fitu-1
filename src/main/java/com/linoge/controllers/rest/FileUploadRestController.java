@@ -39,6 +39,11 @@ public class FileUploadRestController {
         return convertImageCollectionToDTO(imageService.uploadImages(request));
     }
 
+    @RequestMapping(value = "/deleteimage", method = RequestMethod.POST)
+    public void deleteImage(@RequestParam("id") Long id) {
+        imageService.deleteImageById(id);
+    }
+
     @Cacheable(value = "images", key = "#id")
     @RequestMapping(value = "/getimage", method = RequestMethod.GET)
     public byte[] getImage(@RequestParam("id") Long id) throws IOException {
