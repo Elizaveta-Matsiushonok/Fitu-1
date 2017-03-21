@@ -6,7 +6,7 @@ var Tag = {
         var tag = _.find(this.tagList, {title: tagTitle});
         if (!_.includes(this.selectedTags, tag.id)) {
             this.selectedTags.push({"id": tag.id});
-            $("#btnList").append('<div id="tag' + tag.id +'"><span class="tag label label-info"><span>' + tagTitle + '</span>' +
+            $("#btnList").append('<div id="tag' + tag.id +'" style="display: inline-block;"><span class="tag label label-info" ><span>' + tagTitle + '</span>' +
                 '<a><i id="crossId' + tag.id +'" class="remove glyphicon glyphicon-remove-sign glyphicon-white" onclick="Tag.deleteTagFromList(this)"></i></a></span></div>');
         }
     },
