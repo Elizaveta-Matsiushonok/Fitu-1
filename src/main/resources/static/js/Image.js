@@ -27,7 +27,7 @@ var Image = {
             var index = _.findIndex(imageArray, (function(obj){
                 return obj.id == object.id;
             }));
-            $('#result').append('<div class="img-div"><div id="image' + index + '" >' +
+            $('#result').append('<div class="img-article"><div id="image' + index + '" >' +
                 '<div id="img' + index +'"><div><a data-toggle="modal">' + object.path + '</a></div></div></div>' +
                 '<button id="deleteImageBtn' +index +'" type="Submit" onclick="Image.deleteImage(this)">Delete</button></div>');
             $('img').addClass('img-responsive');
