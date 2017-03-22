@@ -3,10 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Справка</title>
+    <style>
+        .centered{
+            text-align: center;
+        }
+        .left{
+            text-align: left;
+        }
+        .small-text{
+            font-size: 12px;
+        }
+
+        .container-fluid {
+            max-height: 200px;
+            overflow-y: hidden;
+        }
+
+        .col-md-4 {
+           margin-left: 300px;
+            width: 100px;
+            height: 200px;
+            float: left;
+        }
+        .col-md-4 #sign{
+            padding-top: 15px;
+        }
+
+    </style>
 </head>
 <body>
 <div class="edu">
-<div class="container-fluid">
     <div class="col-md-12">
     <p class="centered">Министерство образования Республики Беларусь</p>
     <p class="centered">Учреждение образования</p>
@@ -14,38 +40,43 @@
     <p class="centered">ул. П.Бровки, 6, 20013, г.Минск</p>
 </div>
 </div>
-</div>
 <div class="ref">
-<div class="container-fluid">
     <div class="col-md-12">
     <p class="centered upper">Справка</p>
     <p class="centered">о том, что гражданин является обучающимся</p>
     <p class="centered"><data></data> № <data></data></p>
     <p class="centered">ул. П.Бровки, 6, 20013, г.Минск</p>
     <p class="centered">Выдана <data></data> в том, что с <data></data> по <data></data> он(она) действительно является обучающимся группы <data></data> <data></data> курса факультета ИТиУ специальности <data></data> очной формы обучения УО "Белорусский государственный университет информатики и радиоэлектроники", получает первое высшее образование на <data></data> основе.</p>
-    <p class="centered">Приказ о зачислении №<data></data>.</p>
-    <p class="centered">Справка выдана для предоставления <data></data>.</p>
-    <p class="centered">Справка действительна 6 месяцев.</p>
-</div>
+    <p class="left">Приказ о зачислении №<data></data>.</p>
+    <p class="left">Справка выдана для предоставления <data></data>.</p>
+    <p class="left">Справка действительна 6 месяцев.</p>
 </div>
 </div>
 <div class="signature">
 <div class="container-fluid">
     <div class="col-md-4">
-        <p class="centered">Декан факультета</p>
-        <p class="centered">Специалист факультета</p>
+        <p>Декан факультета</p>
+        <p>Специалист факультета</p>
     </div>
     <div class="col-md-4">
-        <p class="centered"><hr></p>
-        <p class="centered small-text">(подпись)</p>
-        <p class="centered"><hr></p>
-        <p class="centered small-text">(подпись)</p>
+        <div id="sign">
+        <p><hr></p>
+        <p class="small-text">(подпись)</p>
+        </div>
+        <div id="sign">
+        <p><hr></p>
+        <p class="small-text">(подпись)</p>
+        </div>
     </div>
     <div class="col-md-4">
-        <p class="centered"><hr></p>
-        <p class="centered small-text">(инициалы, фамилия)</p>
-        <p class="centered"><hr></p>
-        <p class="centered small-text">(инициалы, фамилия)</p>
+        <div id="sign">
+        <p><hr></p>
+        <p class="small-text">(инициалы, фамилия)</p>
+        </div>
+        <div id="sign">
+        <p><hr></p>
+        <p class="small-text">(инициалы, фамилия)</p>
+        </div>
     </div>
 </div>
 </div>
