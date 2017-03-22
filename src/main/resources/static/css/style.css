@@ -593,3 +593,9 @@ fieldset {border: 1px solid #9f8b7b; padding: 15px 30px}
 	height: 150px;
 }
 
+.img-article{
+	float: left;
+	text-align: center;
+	display: inline-block;
+	margin:20px;
+}
